@@ -1,0 +1,26 @@
+//Instead of creating instance of service files in every test specification, we can put them only once in beforeEach method and it will be called automatically in every test specification
+
+describe('CalculatorService', ()=> {
+
+  //create variable of instance names because if it is declared inside beforeEach method, it will not be visible out of it
+  var calculator: CalculatorService,
+      logger: any;
+
+  //now add the stuff we want to be called in every test specification on top
+  beforeEach(() => {
+    logger = jasmine.createSpyOb('LoggerService', ["log"]);
+    calculator = new CalculatorService(new LoggerService(logger));
+  });
+
+  it('Should add two numbers', () => {
+    const result = calculator.add(2, 2);
+    expect(result).toBe(4, "This test case has been failed because add function is not written properly");
+    expect(logger.log).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should subtract two numbers', () => {
+    const result = calculator.subtract(2, 2);
+    expect(result).toBe(0);
+    expect(logger.log).toHaveBeenCalledTimes(1);
+  });
+});
