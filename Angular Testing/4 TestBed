@@ -1,5 +1,5 @@
 //Angular uses dependency injection. i.e. We provide dependency services directly in the constructor
-// So here also we use same notion using TestBed
+// So here also we use same notion using TestBed method
 
 
 describe('CalculatorService', ()=> {
