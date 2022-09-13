@@ -1,0 +1,27 @@
+import {CoursesService} from './courses.service';
+import {TestBed} from '@angular/core/testing';
+import {HttpTestingController, HttpClientTestingModule} from '@angular/core/testing';
+
+describe('CoursesService', ()=> {
+
+    let coursesService: CoursesService,
+        httpTestingController: HttpTestingController;
+
+    beforeEach(()=> {
+        TestBed.configureTestingModule({
+            //Coursesservice has dependency of HTTPClient which when called original will cause issue so we are mov=cking it.
+            //This Testing http client will replace the actual http client and allow test to be performed
+            imports: [HttpClientTestingModule],
+            providers: [
+                CoursesService
+            ]
+        });
+        coursesService = TestBed.get(CoursesService);
+        httpTestingController = TestBed.get(HttpTestingController)
+    });
+
+    it('should retrieve all courses', ()={
+
+    });
+
+});
