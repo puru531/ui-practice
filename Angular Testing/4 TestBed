@@ -1,0 +1,35 @@
+//Angular uses dependency injection. i.e. We provide dependency services directly in the constructor
+// So here also we use same notion using TestBed
+
+
+describe('CalculatorService', ()=> {
+
+  var calculator: CalculatorService,
+      logger: any;
+
+  beforeEach(() => {
+    logger = jasmine.createSpyOb('LoggerService', ["log"]);
+
+    //TestBed help us to in dependency injection instead of calling constructor explicitly.
+    TestBed.configureTestingModule({
+      providers: [
+        CalculatorService,
+        {provide: LoggerService, useValue: logger}
+      ]
+    });
+    // Now we can use TestBed to retrieve our CalculatorService, instead of calling the constructor explicitly.
+    calculator = TestBed.get(CalculatorService);
+  });
+
+  it('Should add two numbers', () => {
+    const result = calculator.add(2, 2);
+    expect(result).toBe(4, "This test case has been failed because add function is not written properly");
+    expect(logger.log).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should subtract two numbers', () => {
+    const result = calculator.subtract(2, 2);
+    expect(result).toBe(0);
+    expect(logger.log).toHaveBeenCalledTimes(1);
+  });
+});
