@@ -65,3 +65,61 @@ console.log(yearsLeftForRetirement(2000));
 
 
 //---------------------------> Arrays <---------------------------
+/*
+const friends = ['Himanshu', 'Mukesh', 'Kunal'];
+console.log(friends);
+console.log(friends[0]);
+console.log(friends[2]);
+//Number of elements in Array
+console.log(friends.length);
+//Access last element
+console.log(friends[friends.length-1]);
+//Replacing the element at a particular index
+friends[2] = 'Sharad';
+console.log(friends);
+
+const years = new Array(2000, 2006, 2009, 2017, 2020);
+console.log(years);
+
+
+const firstName = 'Purushottam';
+const puru = [firstName, 'Kumar', 2022-1997, 'Developer', friends];
+console.log(puru);
+
+
+const calcAge = function (birthYear) {
+  return 2022-birthYear;
+}
+*/
+
+//Array Methods
+/*
+const friends = ['Himanshu', 'Mukesh', 'Kunal'];
+//Add element at last  --> array.push()
+const newLength = friends.push('Sharad'); //push function also returns the new length of array
+console.log(newLength);
+//Add element at begining  --> array.unshift(value)
+friends.unshift('Vivek');
+console.log(friends);
+
+//Remove last element
+const popped = friends.pop();  //pop function returns the popped element
+console.log(popped);
+console.log(friends);
+
+//Remove element at begining  --> array.shift()
+friends.shift(); // will return the removed element
+console.log(friends);
+
+//Knowing the position if element
+console.log(friends.indexOf('Himanshu'));
+
+//check if an element is present in array or not
+console.log(friends.includes('Himanshu')); //will return true is available else false
+//array.includes uses strict rules and does not use type coersion
+friends.push(23);
+console.log(friends.includes('23')); //will return false
+*/
+
+
+
