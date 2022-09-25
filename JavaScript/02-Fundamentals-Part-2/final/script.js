@@ -123,3 +123,63 @@ console.log(friends.includes('23')); //will return false
 
 
 
+//---------------------------> Objects <---------------------------
+/*
+const puru = {
+  firstName: 'Purushottam',
+  lastName: 'Kumar',
+  age: 2022-1997,
+  job: 'Developer',
+  friends: ['Himanshu', 'Mukesh', 'Sharad']
+};
+//Retrieving and changing data of object
+console.log(puru);
+console.log(puru.lastName);
+console.log(puru['lastName']); //brackets can accept expressions
+
+const nameKey = 'Name';
+console.log(puru['first'+ nameKey]);
+
+const interestedIn = prompt('What do you want to know about puru ? Choose between firstName, lastName, age, job and friends.');
+if(puru[interestedIn]) {
+  console.log(puru[interestedIn]);
+} else {
+  console.log('Wrong request ! Choose between firstName, lastName, age, job and friends.');
+}
+
+//Adding propertiess to the object
+puru.location = 'Bihar';
+puru['twitter'] = '@itzpuru';
+console.log(puru);
+
+console.log(`${puru.firstName} has ${puru.friends.length} friends and his best friend is ${puru.friends[0]}.`);
+*/
+
+
+//Object Methods
+const puru = {
+  firstName: 'Purushottam',
+  lastName: 'Kumar',
+  birthYear: 1997,
+  job: 'Developer',
+  friends: ['Himanshu', 'Mukesh', 'Sharad'],
+  hasDriversLicense: true,
+  /*
+  calcAge: function(birthYear) {
+    return 2022-birthYear;
+  } //Any function that is attached to an object is called a method  --> it should be a function expression
+
+  */
+  calcAge: function() { //using the same birthYear defined in this object
+    console.log(this); // this keyword points to current object
+      return 2022-this.birthYear;
+    }
+};
+
+//calling method (function) declared inside the object
+
+//console.log(puru.calcAge(1997)); //for commented function
+//console.log(puru['calcAge'](1997)); //for commented function
+
+console.log(puru.calcAge());
+
