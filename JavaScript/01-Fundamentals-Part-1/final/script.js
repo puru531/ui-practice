@@ -256,7 +256,7 @@ console.log('10'-'4'-'3'-2+'5');  //(10-4-3-2)+'5' --> 1+'5' --> 15
 */
 
 // ----------------------------> Truthy and Falsy Values <----------------------------
-
+/*
 // 5 falsy values : 0, '', undefined, null, NaN
 console.log(Boolean(0));
 console.log(Boolean(''));
@@ -279,3 +279,12 @@ if(height) {
 } else {
     console.log("Could not find height variable!");
 }
+*/
+
+// ----------------------------> Equality Operators: == vs. === <----------------------------
+
+const age = 18;
+//strict equality operator(===), becuase it does not perform type coersion
+if(age === 18) console.log("You just became an adult!");
+console.log('18'===18);
+console.log('18'==18);
