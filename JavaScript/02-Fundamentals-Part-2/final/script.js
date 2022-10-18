@@ -157,6 +157,7 @@ console.log(`${puru.firstName} has ${puru.friends.length} friends and his best f
 
 
 //Object Methods
+/*
 const puru = {
   firstName: 'Purushottam',
   lastName: 'Kumar',
@@ -170,9 +171,20 @@ const puru = {
   } //Any function that is attached to an object is called a method  --> it should be a function expression
 
   */
+  /*
   calcAge: function() { //using the same birthYear defined in this object
     console.log(this); // this keyword points to current object
       return 2022-this.birthYear;
+  }
+  */
+/*
+  //Calculate and save in a variable in same object
+  calcAge: function() { //using the same birthYear defined in this object
+      this.age = 2022-this.birthYear; //This will create a new variable and assign value to it
+      return this.age;
+   },
+  getSummary : function() {
+    return `${this.firstName} is a ${this.calcAge()}-years ${this.job}. He has ${this.hasDriversLicense ? 'a' : 'no'} driver's license.`;
     }
 };
 
@@ -182,4 +194,130 @@ const puru = {
 //console.log(puru['calcAge'](1997)); //for commented function
 
 console.log(puru.calcAge());
+console.log(puru.age);
+console.log(puru.age);
+
+console.log(puru.getSummary());
+
+//Challenge #3
+const mark = {
+  name: 'Mark Miller',
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    this.bmi = (this.mass / this.height**2).toFixed(2);
+    return this.bmi;
+  }
+};
+const john = {
+  name: 'John Smith',
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    this.bmi = (this.mass / this.height**2).toFixed(2);
+    return this.bmi;
+  }
+};
+
+if(mark.calcBMI() > john.calcBMI()) {
+  console.log(`${mark.name}'s BMI (${mark.bmi}) is higher than ${john.name}'s BMI (${john.bmi})`);
+} else if(john.calcBMI() > mark.calcBMI()) {
+  console.log(`${john.name}'s BMI (${john.bmi}) is higher than ${mark.name}'s BMI (${mark.bmi})`);
+} else {
+  console.log(`${john.name}'s BMI (${john.bmi}) and ${mark.name}'s BMI (${mark.bmi}) are equal.`);
+}
+*/
+
+
+//---------------------------> Loops <---------------------------
+
+//for loop keeps running while condition is true
+for(let rep =1; rep<=10; rep++) {
+  console.log(`Lifting weights repetition ${rep}.`);
+}
+
+//looping through arrays
+const puru = ['Purushottam', 'Kumar', 2022-1997, 'Developer', ['Himanshu', 'Mukesh', 'Sharad']];
+const types = [];
+
+for(let i = 0; i<puru.length; i++) {
+  console.log(puru[i]);
+  types.push(typeof(puru[i]));
+}
+console.log(types);
+
+
+const years = [1994, 1997, 2000, 2004, 2006, 2007];
+const age = [];
+
+for (var i = 0; i < years.length; i++) {
+  age.push(2022-years[i]);
+}
+
+console.log(age);
+
+//continue and break 
+//continue: to skip current iteration and move to next one
+//break: to break the whole iteration
+console.log('------ ONLY STRING ---------');
+for(let i = 0; i<puru.length; i++) {
+  if(typeof(puru[i]) !== 'string') continue; //if value is not a string it will skip the ieration and will not execute statements below it and will start the next iteration.
+  console.log(puru[i], typeof(puru[i]));
+}
+
+console.log('------ BREAK WITH NUMBER ---------');
+for(let i = 0; i<puru.length; i++) {
+  if(typeof(puru[i]) == 'number') break; //if value occured is a number,It will stop iteration
+  console.log(puru[i], typeof(puru[i]));
+}
+
+
+//Looping backwards in a loop
+console.log('------ LOOPING BACKWARDS ---------');
+for(let i = puru.length-1; i>=0; i--) {
+  console.log(puru[i], typeof(puru[i]));
+}
+
+//Loop inside a loop
+for(let exercise = 1; exercise<4; exercise++) {
+  console.log(`---------- Starting Exercise ${exercise}`);
+  for (var rep = 1; rep<6; rep++) {
+    console.log(`Lifting weight repetition ${rep}`);
+  }
+}
+
+//While loop
+var rep = 1;
+while(rep<6) {
+    console.log(`Lifting weight repetition ${rep}`);
+    rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6 + 1);
+console.log(dice);
+
+while(dice !== 6) {
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6 + 1);
+  if(dice == 6) console.log('Loop is about to end.....');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
