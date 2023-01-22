@@ -147,7 +147,7 @@ const puru = {
 		console.log(2022 - this.year);
 	},
 
-	greet: () => console.log(`Hey ${this.firstName}`);
+	greet: () => console.log(`Hey ${this.firstName}`),
 }
 //Arrow function takes value of this from its surroundings, in this case, greet is parent of 'this' and greet will take value of this from global scope because greet is not inside any block, but an object literal
 puru.greet();

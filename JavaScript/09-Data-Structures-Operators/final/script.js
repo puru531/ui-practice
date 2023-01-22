@@ -24,7 +24,7 @@ const openingHours = {
     },
   };
 
-
+/*
 
 const restaurant = {
   name: 'Classico Italiano',
@@ -55,7 +55,7 @@ const restaurant = {
   }
 
 };
-
+*/
 // console.log(restaurant);
 
 /*
@@ -514,8 +514,6 @@ console.log([...question.values()]);
 */
 
 
-
-
 //STRINGS
 
 
@@ -617,7 +615,7 @@ const checkBaggage = function (items) {
   }
 };
 
-checkBaggage('I havce a laptop, some Food and a pocket knife');
+checkBaggage('I have a laptop, some Food and a pocket knife');
 checkBaggage('Socks and Camera');
 checkBaggage('Got some snacks and a gun for protection');
 
@@ -635,3 +633,103 @@ checkBaggage('Got some snacks and a gun for protection');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//===================== Promises
+/*
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() =>{
+    resolve ('Data Recieved')
+  }, 3000)
+});
+
+//async keyword with function always returns a promise
+async function getData() {
+  let response = await promise;
+  console.log(response);
+}
+
+getData();
+
+
+
+let result1 = document.getElementById('result1');
+let result2 = document.getElementById('result2');
+let result3 = document.getElementById('result3');
+
+//Ex-1 : With promise
+
+let dell = {
+  brand: 'Dell',
+  hardDisk: '2 TB',
+  color: 'black'
+}
+
+let buyLaptop = new Promise((resolve, reject) => {
+  setTimeout(() =>{
+    resolve (dell)
+  }, 3000)
+});
+
+let buyLaptop2 = fetch('https://jsonplaceholder.typicode.com/posts').then(response => response.json());
+
+function fetch1() {
+  result1.innerHTML = 'Fetching Data...';
+
+  buyLaptop.then(res => {
+    result1.innerHTML = JSON.stringify(res);
+  })
+}
+
+//Ex-2 : With Async/Await
+
+async function fetch2() {
+  result2.innerHTML = 'Fetching Data...';
+  let data = await buyLaptop;
+  result2.innerHTML = JSON.stringify(data);
+}
+
+
+//Ex-2 : With fetch Api
+
+//Promise
+// function fetch3() {
+//   result3.innerHTML = 'Fetching Data...';
+
+//   buyLaptop2.then(res => {
+//     result3.innerHTML = JSON.stringify(res);
+//   });
+// }
+
+//Async/Await
+async function fetch3() {
+  result3.innerHTML = 'Fetching Data...';
+
+  let res = await buyLaptop2;
+  result3.innerHTML = JSON.stringify(res);
+}
+
+*/
