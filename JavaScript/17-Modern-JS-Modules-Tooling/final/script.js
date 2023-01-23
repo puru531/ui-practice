@@ -80,12 +80,12 @@ console.log(price, tq);
 
 //import has live connection with export, 
 //from export file, we exported an empty array of cart, but when we add more items in cart, it will get updated. So exported cart is nut just an array.
-// import add, { cart } from './shoppingCart.js';
-// add(5, 'Pizza');
-// add(2, 'Burger');
-// add(3, 'Momos');
+import add, { cart } from './shoppingCart.js';
+add(5, 'Pizza');
+add(2, 'Burger');
+add(3, 'Momos');
 
-// console.log(cart);  // o/p   0: {product: 'Pizza', quantity: 5} 1: {product: 'Burger', quantity: 2} 2: {product: 'Momos', quantity: 3}
+console.log(cart);  // o/p   0: {product: 'Pizza', quantity: 5} 1: {product: 'Burger', quantity: 2} 2: {product: 'Momos', quantity: 3}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -196,4 +196,26 @@ npm -v : gives npm version if it is installed.
 npm init : initialize npm in our project (will ask some questions for creating package.json.... if don't want to give anything keep pressing enter)
 */
 
-import cloneDeep from '/.node_modules\lodash-es\cloneDeep.js';
+import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+
+const state = {
+  cart : [
+    {product : 'bread', quantity: 5},
+    {product : 'pizza', quantity: 5},
+  ],
+  user : {loggedIn : true}
+}
+
+const stateClone = Object.assign({}, state);
+stateClone.user.loggedIn = false; // it will change the value inside state object because of memory address location, but if want a cloned copy of object, it will take a lot of work, so we can use cloneDeep instead.
+console.log(stateClone);
+
+//Cloning a deep nested object
+const stateDeepClone = cloneDeep(state); //COpied in a new object, and any change in one will not affect other.
+console.log(stateDeepClone, 'using cloneDeep'); 
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+///---------------> BUILDING WITH PARCEL AND NPM SCRIPTS   <--------------------
+// npm i parcel --save-dev    //Installing a dev dependency
+//npx parcel index.html       //builds the project     (index.html) --> location of file in which we are including module js file , t
