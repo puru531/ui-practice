@@ -195,3 +195,5 @@ Earlier we used to include external libraries in HTML using the script tag. This
 npm -v : gives npm version if it is installed.
 npm init : initialize npm in our project (will ask some questions for creating package.json.... if don't want to give anything keep pressing enter)
 */
+
+import cloneDeep from '/.node_modules\lodash-es\cloneDeep.js';
