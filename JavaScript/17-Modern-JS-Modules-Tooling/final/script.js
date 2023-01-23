@@ -196,7 +196,8 @@ npm -v : gives npm version if it is installed.
 npm init : initialize npm in our project (will ask some questions for creating package.json.... if don't want to give anything keep pressing enter)
 */
 
-import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es'; //parcel will automatically find the path
 
 const state = {
   cart : [
@@ -218,4 +219,27 @@ console.log(stateDeepClone, 'using cloneDeep');
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ///---------------> BUILDING WITH PARCEL AND NPM SCRIPTS   <--------------------
 // npm i parcel --save-dev    //Installing a dev dependency
-//npx parcel index.html       //builds the project     (index.html) --> location of file in which we are including module js file , t
+//npx parcel index.html       //builds the project     (index.html) --> location of file in which we are including module of js file 
+//To run it with npm script, we need to specify command in package.json --> script object --> "start" : "parcel index.html"
+    //and to use that --> npm run start
+
+if (module.hot) {
+  module.hot.accept(); //doesn't work in browser, supported by parcel, ---> if any module is change, don't reload the whole project, just inject tha updated module in importing file.
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+///---------------> CONFIGURING BABEL AND POLYFILLING   <--------------------  
+//converting modern code back to ES5 code.
+
+//Parcel automatically uses Babel, but some of the ES6 features are not convertable to ES5, like :
+console.log(cart.find(x => x.quantity>=2));
+Promise.resolve('Test').then((x) => console.log(x));
+//In order to convert such features to ES5, we use polyfilling
+//core-js library is used for polyfilling, --> it will recreate all ES6 features.
+import 'core-js/stable'; //needs to be installed --> npm install core-js
+import 'core-js/stable/array/find';  //will polyfill one specific given feature.
+import 'core-js/stable/promise';
+
+//Polyfilling async functions
+import 'regenerator-runtime/runtime'; //need to be installed --> npm install regenerator-runtime
