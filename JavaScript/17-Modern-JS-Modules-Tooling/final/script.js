@@ -243,3 +243,52 @@ import 'core-js/stable/promise';
 
 //Polyfilling async functions
 import 'regenerator-runtime/runtime'; //need to be installed --> npm install regenerator-runtime
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+///---------------> DECLARATIVE AND FUNCTIONAL JAVASCRIPT PRINCIPLES   <--------------------
+/*
+//Two fundamentally different ways of writing code :
+                            //Imperative                                                     //Declarative
+1.       Programmer explains how to do things.                                        Programmer tells what to do.
+2.      Explain computer every single step to achieve a result.              Simply describe the way computer should achieve a result. 
+                                                                             (step by step instruction) get abstracted away. 
+
+*/
+
+//-----------> Imperative <------------------  step by step instruction 
+const arr = [2,5,6,7,8,3];
+const doubled = [];
+for (let i = 0; i < arr.length; i++) {
+  doubled[i] = arr[i] * 2;
+}
+//-----------> Declarative <------------------  no step by step instruction
+const arr2 = [2,5,6,7,8,3];
+const doubled2 = arr.map(item => item * 2);
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+///---------------> FUNCTIONAL PROGRAMMING   <--------------------
+/*
+It is a Declarative programming paradigm.
+Based on the idea of writing software by combining many pure functions, avoiding side effects and mutating data.
+        Side effects : A side effect is basically simply a modification of any data that's outside of a function. For example, mutating any variable that is external to the function is causing a side effect.
+        Pure functions : A pure function, is a function without side effects. basically a function that does not mutate any external variables, and that does also not depend on any external variables.
+        Immutability : In functional programming state, which also means basically data is never modified.
+
+Functional programming techniques :
+Try to avoid data mutations as often as possible.
+Always prefer, built in methods or functions that do not produce side effects over the ones that do,
+For data transformations, use a method such as Map, Filter and Reduce.
+
+Declarative syntax :
+use array and object destructuring
+use spread operator(...)
+User ternary operators( ? : )
+use template literals ` `
+*/
+
+
