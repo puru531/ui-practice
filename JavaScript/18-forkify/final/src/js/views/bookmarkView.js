@@ -2,17 +2,24 @@
 import icons from 'url:../../img/icons.svg';
 import View from './view.js';
 import previewView from './previewView.js';
-class ResultsView extends View{
-    _parentEl = document.querySelector('.results');
-    _errorMessage = 'No recipes found for your query. Please try again!';
+
+class BookmarksView extends View{
+    _parentEl = document.querySelector('.bookmarks__list');
+    _errorMessage = 'No bookmarks yet. Find a nice recipe and bookmark it!';
     _message = '';
+
+    addHanderRender(handler) {
+        window.addEventListener('load', handler);
+    }
 
     _generateMarkup() {
         
-      return this._data.map(bookmark => previewView.render(bookmark, false)).join('');
+        return this._data.map(bookmark => previewView.render(bookmark, false)).join('');
 
     }
-    /* OR
+
+
+        /* OR
     _generateMarkup() {
         
         return this._data.map(this._generateMarkupPreview).join('');
@@ -36,6 +43,7 @@ class ResultsView extends View{
           `;
     }
     */
+   
 }
 
-export default new ResultsView();
+export default new BookmarksView();

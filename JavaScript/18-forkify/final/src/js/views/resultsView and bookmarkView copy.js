@@ -1,18 +1,11 @@
 //to show the seached results list
 import icons from 'url:../../img/icons.svg';
 import View from './view.js';
-import previewView from './previewView.js';
 class ResultsView extends View{
     _parentEl = document.querySelector('.results');
     _errorMessage = 'No recipes found for your query. Please try again!';
     _message = '';
 
-    _generateMarkup() {
-        
-      return this._data.map(bookmark => previewView.render(bookmark, false)).join('');
-
-    }
-    /* OR
     _generateMarkup() {
         
         return this._data.map(this._generateMarkupPreview).join('');
@@ -35,7 +28,6 @@ class ResultsView extends View{
           </li>
           `;
     }
-    */
 }
 
 export default new ResultsView();

@@ -27,6 +27,12 @@ function getSettingCard() {
     return `\nParent ID: "${pageId}\nCard Name: "${card}"`;
 }
 
+function getLandingPage() {
+    const elem = document.getElementById('landing-page');
+    const landingPage = elem.getAttribute('data-metric-parent-id');
+    return `\nPage : ${landingPage}"`;
+}
+
 
 function getStoryboardsInfo() {
 return 'Storyboard: Ageing'
@@ -42,6 +48,9 @@ guideInfo = getStoryboardsInfo();
 break;
 case 'settings':
 guideInfo = getSettingCard();
+break;
+case 'landing_pages':
+guideInfo = getLandingPage();
 break;
 }
 }

@@ -27,6 +27,14 @@
       float: right;
     }
   }
+
+  .pagination-desc{
+    width: 25%;
+    margin: 10 auto 0;
+    font-size: small;
+    color: $color-primary;
+    font-weight: 700;
+  }
 }
 
 .copyright {
