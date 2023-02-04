@@ -12,6 +12,6 @@ git branch : lists all the branches
 git merge <branchname> : Will merge changes of other branch into current one
 
 git remote add origin <repo_url> : setting repo to push code
-git remove -v : List the remote urls
+git remote -v : List the remote urls
 git push origin main : Pushing main branch to origin remote
 git push : Push the code to remote branch
