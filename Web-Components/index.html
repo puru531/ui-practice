@@ -6,9 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Components</title>
     <script src="./tooltip.js"></script>
+    <script src="./confirm-link.js"></script>
+    <style>
+        * {
+            border-sizing: border-box;
+        }
+
+        /* <---------------- CSS Variables --------------> (starts with two dash (--))  */
+        /* html {}   OR  */
+        :root {
+            --color-primary : rgb(26, 125, 246);
+            font-family: sans-serif;
+        }
+        /* .highlight {
+            /* background-color: yellow; */
+        } */
+        /* cp-tooltip {
+            border: 1px solid blue;
+            padding: 0.2rem;
+        } */
+    </style>
 </head>
 <body>
-    <p><cd-tooltip text="Webcomponent is a set of standards.">Web components</cd-tooltip> are awesome!</p>
-    <cd-tooltip>Here we go!</cd-tooltip>
+    <p><cp-tooltip class="specific-class" text="Webcomponent is a set of standards."><span class="highlight">Web components</span></cp-tooltip> are awesome!</p>
+    <!-- <cp-tooltip>Here we go!</cp-tooltip> <br /> -->
+    <cp-tooltip></cp-tooltip>
+    <a is="cp-confirm-link" href="www.google.com">Google</a> <!-- is attribute is used to prove the custom element to be used inside normal HTML tag -->
 </body>
 </html>
