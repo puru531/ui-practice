@@ -5,10 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Stencil Component Starter</title>
 
+    <style>
+      body{
+        font-family: sans-serif;
+      }
+      .side-nav ul{
+        list-style: none;
+      }
+      .side-nav li {
+        margin: 1rem 0;
+      }
+      .side-nav a{
+        text-decoration: none;
+        color: black;
+      }
+    </style>
+
     <script type="module" src="/build/web-components-stencil.esm.js"></script>
     <script nomodule src="/build/web-components-stencil.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <!-- <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component> -->
+    <button id="side-draw-btn" style="z-index: 1000; background: black; color: white; position: absolute;">Open Side Menu</button>
+    <cp-side-drawer slider-title="Main Menu">
+      <nav class="side-nav">
+        <ul>
+          <li><a href="/">Link</a></li>
+          <li><a href="/">Another link</a></li>
+          <li><a href="/">A third link</a></li>
+        </ul>
+      </nav>
+    </cp-side-drawer>
+
+    <br><br>
+
+    <cp-tooltip content="Yay! The tooltip is working !">Click on the icon to now more</cp-tooltip>
+
+
+    <!-- We can also access prop variables of cutom components   -->
+    <script>
+      const sideDrawbtn = document.querySelector('#side-draw-btn');
+      const sideDrawer = document.querySelector('cp-side-drawer');
+      sideDrawbtn.addEventListener('click', ()=>{
+        if(!sideDrawer.opened) {
+          // sideDrawer.open = true;
+          //we can also access methods of our components
+          sideDrawer.open();
+        }
+      })
+      /* setTimeout(()=> {
+        sideDrawer.sliderTitle = 'It can change!'; //stencil prop keeps watching so it update the DOM automatically
+      }, 3000); */
+    </script>
+  
   </body>
 </html>

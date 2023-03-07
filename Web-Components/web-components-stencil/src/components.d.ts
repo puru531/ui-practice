@@ -6,6 +6,14 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface CpSideDrawer {
+        "open": () => Promise<void>;
+        "opened": boolean;
+        "sliderTitle": string;
+    }
+    interface CpTooltip {
+        "content": string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -22,6 +30,18 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLCpSideDrawerElement extends Components.CpSideDrawer, HTMLStencilElement {
+    }
+    var HTMLCpSideDrawerElement: {
+        prototype: HTMLCpSideDrawerElement;
+        new (): HTMLCpSideDrawerElement;
+    };
+    interface HTMLCpTooltipElement extends Components.CpTooltip, HTMLStencilElement {
+    }
+    var HTMLCpTooltipElement: {
+        prototype: HTMLCpTooltipElement;
+        new (): HTMLCpTooltipElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +49,19 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "cp-side-drawer": HTMLCpSideDrawerElement;
+        "cp-tooltip": HTMLCpTooltipElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface CpSideDrawer {
+        "opened"?: boolean;
+        "sliderTitle"?: string;
+    }
+    interface CpTooltip {
+        "content"?: string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +77,8 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "cp-side-drawer": CpSideDrawer;
+        "cp-tooltip": CpTooltip;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +86,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "cp-side-drawer": LocalJSX.CpSideDrawer & JSXBase.HTMLAttributes<HTMLCpSideDrawerElement>;
+            "cp-tooltip": LocalJSX.CpTooltip & JSXBase.HTMLAttributes<HTMLCpTooltipElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
