@@ -2,9 +2,12 @@
   display: block;
   font-family: sans-serif;
   margin: 2rem;
-  border: 2px solid #3b013b;
+  border: 2px solid var(--color-primary, black);
   padding: 1rem;
   width: max-content;
+}
+:host(.error) {
+  border-color: rgb(249, 86, 4);
 }
 .form-container {
   display: flex;
@@ -15,21 +18,21 @@
 }
 .form-container #stock-symbol{
   font: inherit;
-  color: #3b013b;
+  color: var(--color-primary, black);
   margin-right: 1rem;
   padding: 0.1rem 0.25rem;
 }
 .form-container .search-button {
   font: inherit;
   padding: 0.25rem 0.5rem;
-  border: 1px solid #3b013b;
-  background: #3b013b;
+  border: 1px solid var(--color-primary, black);
+  background: var(--color-primary, black);
   color: white;
   cursor: pointer;
 }
 .form-container .search-button:hover,
 .form-container .search-button:active {
-  background: #750175;
+  background: var(--color-primary, black);
 }
 .form-container .search-button:disabled{
   background: #ccc;

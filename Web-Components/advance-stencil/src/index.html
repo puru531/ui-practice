@@ -7,8 +7,21 @@
 
     <script type="module" src="/build/advance-stencil.esm.js"></script>
     <script nomodule src="/build/advance-stencil.js"></script>
+    <style>
+      html {
+        --color-primary: #3b013b;
+      }
+    </style>
   </head>
   <body>
     <cp-stock-price stock-user-input="AAPL"></cp-stock-price>
+    <cp-stock-finder></cp-stock-finder>
+<!-- 
+    <script>
+      stockFinderEl = document.querySelector('cp-stock-finder');
+      stockFinderEl.addEventListener('symbolEmitter', event => {
+        console.log(event.detail);
+      })
+    </script> -->
   </body>
 </html>

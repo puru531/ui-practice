@@ -6,13 +6,25 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface CpSpinner {
+    }
     interface CpStockFinder {
     }
     interface CpStockPrice {
         "stockUserInput": string;
     }
 }
+export interface CpStockFinderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCpStockFinderElement;
+}
 declare global {
+    interface HTMLCpSpinnerElement extends Components.CpSpinner, HTMLStencilElement {
+    }
+    var HTMLCpSpinnerElement: {
+        prototype: HTMLCpSpinnerElement;
+        new (): HTMLCpSpinnerElement;
+    };
     interface HTMLCpStockFinderElement extends Components.CpStockFinder, HTMLStencilElement {
     }
     var HTMLCpStockFinderElement: {
@@ -26,17 +38,22 @@ declare global {
         new (): HTMLCpStockPriceElement;
     };
     interface HTMLElementTagNameMap {
+        "cp-spinner": HTMLCpSpinnerElement;
         "cp-stock-finder": HTMLCpStockFinderElement;
         "cp-stock-price": HTMLCpStockPriceElement;
     }
 }
 declare namespace LocalJSX {
+    interface CpSpinner {
+    }
     interface CpStockFinder {
+        "onSymbolEmitter"?: (event: CpStockFinderCustomEvent<string>) => void;
     }
     interface CpStockPrice {
         "stockUserInput"?: string;
     }
     interface IntrinsicElements {
+        "cp-spinner": CpSpinner;
         "cp-stock-finder": CpStockFinder;
         "cp-stock-price": CpStockPrice;
     }
@@ -45,6 +62,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "cp-spinner": LocalJSX.CpSpinner & JSXBase.HTMLAttributes<HTMLCpSpinnerElement>;
             "cp-stock-finder": LocalJSX.CpStockFinder & JSXBase.HTMLAttributes<HTMLCpStockFinderElement>;
             "cp-stock-price": LocalJSX.CpStockPrice & JSXBase.HTMLAttributes<HTMLCpStockPriceElement>;
         }
