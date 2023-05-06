@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Node + EJS</title>
+    <!-- importing custom components  (NOT WORKING)  -->
+    <script type='module' src="../public/cp-components/esm/advance-stencil.js"></script>
 </head>
 <body>
     <h1><%= message %></h1>
+    <!-- using custom components  -------  run project by (npm install -- npm start) -->
+    <cp-stock-price></cp-stock-price>
+    <cp-stock-finder></cp-stock-finder>
 </body>
 </html>
