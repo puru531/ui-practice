@@ -1,0 +1,10 @@
+<div>
+  <p>buffer --> Collects values from the past as an array, and emits that array only when another Observable emits.</p>
+  <button (click)="startInterval()">Start Interval</button>
+  <div>
+    <button style="margin-top: 30px;" id="showButton">Show Data Now</button>
+  </div>
+  <div *ngIf="intervalData.length">
+    <div *ngFor="let data of intervalData">{{ data }}</div>
+  </div>
+</div>

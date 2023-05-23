@@ -1,0 +1,8 @@
+<p>Buffers the source Observable values for a specific time period.</p>
+<p>Collects values from the past as an array, and emits those arrays periodically in time.</p>
+<p>bufferTime(bufferTimeSpan: number, ...otherArgs: any[])</p>
+bufferTimeSpan	- The amount of time to fill each buffer array. <br>
+Others configuration arguments such as: <br>
+bufferCreationInterval - the interval at which to start new buffers;<br>
+maxBufferSize - the maximum buffer size; <br>
+scheduler - the scheduler on which to schedule the intervals that determine buffer boundaries. <br>

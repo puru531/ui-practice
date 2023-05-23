@@ -26,24 +26,24 @@ export class AppComponent implements AfterViewInit{
 
 
   constructor() {
-    this.postArrayObservable$.subscribe({ //When an observable is subscribed, it has three methods
-      next: (data) => console.log(data),  //if successful
-      error: (err) => console.log(err),  //if failed
-      complete: () => console.log("Completed") //after completion
-    })
-    this.promiseArrayObservable$.subscribe({
-      next: (data) => console.log(data),
-      error: (err) => console.log(err),  
-      complete: () => console.log("Promise Completed") 
-    })
+    // this.postArrayObservable$.subscribe({ //When an observable is subscribed, it has three methods
+    //   next: (data) => console.log(data),  //if successful
+    //   error: (err) => console.log(err),  //if failed
+    //   complete: () => console.log("Completed") //after completion
+    // })
+    // this.promiseArrayObservable$.subscribe({
+    //   next: (data) => console.log(data),
+    //   error: (err) => console.log(err),  
+    //   complete: () => console.log("Promise Completed") 
+    // })
   }
 
   ngAfterViewInit(): void {
-    fromEvent(document.getElementById('fisrt-btn')!, 'click').subscribe({ //fromEvent: converts an event into an observable
-      next: (data) => console.log(data),
-      error: (err) => console.log(err),  
-      complete: () => console.log("Promise Completed") //will not be executed because it never completes and always keeps listening
-    }) 
+    // fromEvent(document.getElementById('fisrt-btn')!, 'click').subscribe({ //fromEvent: converts an event into an observable
+    //   next: (data) => console.log(data),
+    //   error: (err) => console.log(err),  
+    //   complete: () => console.log("Promise Completed") //will not be executed because it never completes and always keeps listening
+    // }) 
   }
 
 }
