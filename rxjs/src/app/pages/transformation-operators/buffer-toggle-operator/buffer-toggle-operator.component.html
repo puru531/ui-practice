@@ -1,0 +1,7 @@
+<p>Buffers the source Observable values starting from an emission from openings and ending when the output of closingSelector emits</p>
+<p>Collects values from the past as an array. Starts collecting only when opening emits, and calls the closingSelector function to get an Observable that tells when to close the buffer.</p>
+<p>We will decide when to start and end the buffer</p>
+
+<p>Parameters:</p>
+<p>openings	:	A Subscribable or Promise of notifications to start new buffers.</p>
+<p>closingSelector: A function that takes the value emitted by the openings observable and returns a Subscribable or Promise, which, when it emits, signals that the associated buffer should be emitted and cleared.</p>

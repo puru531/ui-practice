@@ -1,0 +1,9 @@
+<p>Emits only the first count values emitted by the source Observable.</p>
+<p>Takes the first count values from the source, then completes.</p>
+<p>Parameters:</p>
+<p>	
+  The maximum number of next values to emit.</p>
+<p>returns: </p>
+<p>A function that returns an Observable that emits only the first count values emitted by the source Observable, or all of the values from the source if the source emits fewer than count values.</p>
+p
+take returns an Observable that emits only the first count values emitted by the source Observable. If the source emits fewer than count values then all of its values are emitted. After that, it completes, regardless if the source completes.

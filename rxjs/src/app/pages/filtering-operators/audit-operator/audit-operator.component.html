@@ -1,0 +1,11 @@
+<p>Ignores source values for a duration determined by another Observable, then emits the most recent value from the source Observable, then repeats this process.
+</p>
+ <p> Parameters:
+        durationSelector - A function that receives a value from the source Observable, for computing the silencing duration, returned as an Observable or a Promise.
+      </p> 
+<p>
+  audit is similar to throttle, but emits the last value from the silenced time window, instead of the first value. audit emits the most recent value from the source Observable on the output Observable as soon as its internal timer becomes disabled, 
+  and ignores source values while the timer is enabled.  Initially, the timer is disabled. As soon as the first source value arrives, 
+  the timer is enabled by calling the durationSelector function with the source value, which returns the "duration" Observable. When the duration Observable emits a value, the timer is disabled, then the most recent source value is emitted on the output Observable, 
+  and this process repeats for the next source value.
+</p>

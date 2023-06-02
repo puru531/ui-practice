@@ -1,0 +1,9 @@
+<p>Until second observable emits the data</p>
+<p>The skipUntil operator causes the observable stream to skip the emission of values until the passed in observable emits the first value. This can be particularly useful in combination with user interactions, responses of HTTP requests or waiting for specific times to pass by.</p>
+<p>Internally, the skipUntil operator subscribes to the passed in notifier ObservableInput (which gets converted to an Observable) in order to recognize the emission of its first value. When notifier emits next, the operator unsubscribes from it and starts emitting the values of the source observable until it completes or errors. It will never let the source observable emit any values if the notifier completes or throws an error without emitting a value before.</p>
+
+<div>
+  <button id="showUntilButton">Show value from now</button>
+</div>
+
+<div *ngFor="let num of numbers">{{ num }}</div>

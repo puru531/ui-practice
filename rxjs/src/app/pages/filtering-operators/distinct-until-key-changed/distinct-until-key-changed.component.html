@@ -1,0 +1,9 @@
+<p>Returns an Observable that emits all items emitted by the source Observable that are distinct by comparison from the previous item, using a property accessed by using the key provided to check if the two items are distinct.</p>
+<p>If a comparator function is provided, then it will be called for each item to test for whether that value should be emitted or not.
+
+  If a comparator function is not provided, an equality check is used by default.</p>
+  <p>Parameters:</p>
+  <p>key - String key for object property lookup on each item.</p>
+  <p>compare - Optional. Default is undefined.
+
+    Optional comparison function called to test if an item is distinct from the previous item in the source.</p>

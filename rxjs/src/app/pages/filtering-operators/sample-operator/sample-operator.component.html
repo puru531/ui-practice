@@ -1,0 +1,10 @@
+<pre>
+  Emits the most recently emitted value from the source Observable whenever another Observable, the notifier, emits.
+
+  Parameters : 
+      notifier - The ObservableInput to use for sampling the source Observable.
+  Returns : 
+     A function that returns an Observable that emits the results of sampling the values emitted by the source Observable whenever the notifier Observable emits value or completes.
+
+     Whenever the notifier ObservableInput emits a value, sample looks at the source Observable and emits whichever value it has most recently emitted since the previous sampling, unless the source has not emitted anything since the previous sampling. The notifier is subscribed to as soon as the output Observable is subscribed.
+</pre>

@@ -1,0 +1,8 @@
+<p>Emits values emitted by the source Observable so long as each value satisfies the given predicate, and then completes as soon as this predicate is not satisfied.</p>
+<p>Takes values from the source only while they pass the condition given. When the first value does not satisfy, it completes.</p>
+<p>takeWhile subscribes and begins mirroring the source Observable. Each value emitted on the source is given to the predicate function which returns a boolean, representing a condition to be satisfied by the source values. The output Observable emits the source values until such time as the predicate returns false, at which point takeWhile stops mirroring the source Observable and completes the output Observable.</p>
+<p>Parameters:</p>
+<p>predicate - A function that evaluates a value emitted by the source Observable and returns a boolean. Also takes the (zero-based) index as the second argument.</p>
+<p>inclusive - Optional. Default is false. When set to true the value that caused predicate to return false will also be emitted.</p>
+<p>Returns:</p>
+<p>A function that returns an Observable that emits values from the source Observable so long as each value satisfies the condition defined by the predicate, then completes.</p>

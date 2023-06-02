@@ -1,0 +1,7 @@
+<p>Filter items emitted by the source Observable by only emitting those that satisfy a specified predicate.</p>
+<p>Similar to the well-known Array.prototype.filter method, this operator takes values from the source Observable, passes them through a predicate function and only emits those values that yielded true.</p>
+<p>Parameters: </p>
+<p>predicate - A function that evaluates each value emitted by the source Observable. If it returns true, the value is emitted, if false the value is not passed to the output Observable. The index parameter is the number i for the i-th source emission that has happened since the subscription, starting from the number 0.</p>
+<p>thisArg - Optional. Default is undefined.
+
+  An optional argument to determine the value of 'this' in the predicate function.</p>
