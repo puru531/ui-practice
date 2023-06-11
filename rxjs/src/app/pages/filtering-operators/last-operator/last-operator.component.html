@@ -1,1 +1,10 @@
-<p>last-operator works!</p>
+<p>Returns an Observable that emits only the last item emitted by the source Observable. It optionally takes a predicate function as a parameter, in which case, rather than emitting the last item from the source Observable, the resulting Observable will emit the last item from the source Observable that satisfies the predicate.</p>
+<p>Parameters:</p>
+<p>predicate - Optional. Default is undefined. The condition any source emitted item has to satisfy.</p>
+<p>defaultValue - Optional. Default is undefined.
+
+  An optional default value to provide if last predicate isn't met or no values were emitted.</p>
+  <p>Returns : A function that returns an Observable that emits only the last item satisfying the given condition from the source, or an error notification with an EmptyError object if no such items are emitted.</p>
+  <p>Throws  - EmptyError Delivers an EmptyError to the Observer's error callback if the Observable completes before any next notification was sent.</p>
+
+  <p>It will emit an error notification if the source completes without notification or one that matches the predicate. It returns the last value or if a predicate is provided last value that matches the predicate. It returns the given default value if no notification is emitted or matches the predicate.  </p>
