@@ -5,6 +5,12 @@
     "body": ["console.log($1)"],
     "description": "console.log"
   },
+  "Subscribe an Observable": {
+    "prefix": "subs",
+    "scope": "javascript,typescript,javascriptreact,angular,angularjs",
+    "body": [".subscribe(data => { console.log(data)}, err => {console.log(err);}, () => {console.log('completed');});"],
+    "description": "Subscribe an Observable"
+  },
   "reactComponent": {
     "prefix": "rfc",
     "scope": "javascript,typescript,javascriptreact",

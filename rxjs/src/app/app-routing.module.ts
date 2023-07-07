@@ -23,6 +23,10 @@ import { AuditOperatorComponent } from './pages/filtering-operators/audit-operat
 import { ThrottleOperatorComponent } from './pages/filtering-operators/throttle-operator/throttle-operator.component';
 import { FirstOperatorComponent } from './pages/filtering-operators/first-operator/first-operator.component';
 import { LastOperatorComponent } from './pages/filtering-operators/last-operator/last-operator.component';
+import { DebounceOperatorComponent } from './pages/filtering-operators/debounce-operator/debounce-operator.component';
+import { ElementAtOperatorComponent } from './pages/filtering-operators/element-at-operator/element-at-operator.component';
+import { IgnoreElementsOperatorComponent } from './pages/filtering-operators/ignore-elements-operator/ignore-elements-operator.component';
+import { SingleOperatorComponent } from './pages/filtering-operators/single-operator/single-operator.component';
 
 const routes: Routes = [
   {
@@ -51,6 +55,10 @@ const routes: Routes = [
       { path: 'throttle', component: ThrottleOperatorComponent},
       { path: 'first', component: FirstOperatorComponent},
       { path: 'last', component: LastOperatorComponent},
+      { path: 'debounce', component: DebounceOperatorComponent},
+      { path: 'elementat', component: ElementAtOperatorComponent},
+      { path: 'ignoreElements', component: IgnoreElementsOperatorComponent},
+      { path: 'single', component: SingleOperatorComponent},
     ],
   },
 ];

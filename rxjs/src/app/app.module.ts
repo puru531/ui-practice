@@ -30,6 +30,10 @@ import { AuditOperatorComponent } from './pages/filtering-operators/audit-operat
 import { ThrottleOperatorComponent } from './pages/filtering-operators/throttle-operator/throttle-operator.component';
 import { FirstOperatorComponent } from './pages/filtering-operators/first-operator/first-operator.component';
 import { LastOperatorComponent } from './pages/filtering-operators/last-operator/last-operator.component';
+import { DebounceOperatorComponent } from './pages/filtering-operators/debounce-operator/debounce-operator.component';
+import { ElementAtOperatorComponent } from './pages/filtering-operators/element-at-operator/element-at-operator.component';
+import { IgnoreElementsOperatorComponent } from './pages/filtering-operators/ignore-elements-operator/ignore-elements-operator.component';
+import { SingleOperatorComponent } from './pages/filtering-operators/single-operator/single-operator.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { LastOperatorComponent } from './pages/filtering-operators/last-operator
     AuditOperatorComponent,
     ThrottleOperatorComponent,
     FirstOperatorComponent,
-    LastOperatorComponent
+    LastOperatorComponent,
+    DebounceOperatorComponent,
+    ElementAtOperatorComponent,
+    IgnoreElementsOperatorComponent,
+    SingleOperatorComponent
   ],
   imports: [
     BrowserModule,

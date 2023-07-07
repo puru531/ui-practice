@@ -2,4 +2,7 @@
 <p>Parameters:</p>
 <p>durationSelector - A function that receives a value from the source Observable, for computing the silencing duration for each source value, returned as an ObservableInput.</p>
 <p>config -  Optional. Default is undefined. A configuration object to define leading and trailing behavior. Defaults to  -leading: true, trailing: false -.</p>
-<p>throttle emits the source Observable values on the output Observable when its internal timer is disabled, and ignores source values when the timer is enabled. Initially, the timer is disabled. As soon as the first source value arrives, it is forwarded to the output Observable, and then the timer is enabled by calling the durationSelector function with the source value, which returns the "duration" Observable. When the duration Observable emits a value, the timer is disabled, and this process repeats for the next source value.</p>
+<p>throttle emits the source Observable values on the output Observable when its internal timer is disabled, and ignores source values when the timer is enabled.
+  Initially, the timer is disabled. As soon as the first source value arrives, it is forwarded to the output Observable, 
+  and then the timer is enabled by calling the durationSelector function with the source value, 
+  which returns the "duration" Observable. When the duration Observable emits a value, the timer is disabled, and this process repeats for the next source value.</p>
