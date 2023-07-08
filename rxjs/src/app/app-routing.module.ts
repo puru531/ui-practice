@@ -27,6 +27,8 @@ import { DebounceOperatorComponent } from './pages/filtering-operators/debounce-
 import { ElementAtOperatorComponent } from './pages/filtering-operators/element-at-operator/element-at-operator.component';
 import { IgnoreElementsOperatorComponent } from './pages/filtering-operators/ignore-elements-operator/ignore-elements-operator.component';
 import { SingleOperatorComponent } from './pages/filtering-operators/single-operator/single-operator.component';
+import { MapOperatorComponent } from './pages/transformation-operators/map-operator/map-operator.component';
+import { MapToOperatorComponent } from './pages/transformation-operators/map-to-operator/map-to-operator.component';
 
 const routes: Routes = [
   {
@@ -59,6 +61,8 @@ const routes: Routes = [
       { path: 'elementat', component: ElementAtOperatorComponent},
       { path: 'ignoreElements', component: IgnoreElementsOperatorComponent},
       { path: 'single', component: SingleOperatorComponent},
+      { path: 'map', component: MapOperatorComponent},
+      { path: 'mapto', component: MapToOperatorComponent},
     ],
   },
 ];

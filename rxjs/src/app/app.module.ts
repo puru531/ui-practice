@@ -34,6 +34,8 @@ import { DebounceOperatorComponent } from './pages/filtering-operators/debounce-
 import { ElementAtOperatorComponent } from './pages/filtering-operators/element-at-operator/element-at-operator.component';
 import { IgnoreElementsOperatorComponent } from './pages/filtering-operators/ignore-elements-operator/ignore-elements-operator.component';
 import { SingleOperatorComponent } from './pages/filtering-operators/single-operator/single-operator.component';
+import { MapOperatorComponent } from './pages/transformation-operators/map-operator/map-operator.component';
+import { MapToOperatorComponent } from './pages/transformation-operators/map-to-operator/map-to-operator.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { SingleOperatorComponent } from './pages/filtering-operators/single-oper
     DebounceOperatorComponent,
     ElementAtOperatorComponent,
     IgnoreElementsOperatorComponent,
-    SingleOperatorComponent
+    SingleOperatorComponent,
+    MapOperatorComponent,
+    MapToOperatorComponent
   ],
   imports: [
     BrowserModule,
