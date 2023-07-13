@@ -36,6 +36,12 @@ import { IgnoreElementsOperatorComponent } from './pages/filtering-operators/ign
 import { SingleOperatorComponent } from './pages/filtering-operators/single-operator/single-operator.component';
 import { MapOperatorComponent } from './pages/transformation-operators/map-operator/map-operator.component';
 import { MapToOperatorComponent } from './pages/transformation-operators/map-to-operator/map-to-operator.component';
+import { AjaxComponent } from './pages/creation-operators/ajax/ajax.component';
+import { MergeMapComponent } from './pages/higher-order-operators/merge-map/merge-map.component';
+import { ConcatMapComponent } from './pages/higher-order-operators/concat-map/concat-map.component';
+import { ExhaustMapComponent } from './pages/higher-order-operators/exhaust-map/exhaust-map.component';
+import { SwitchMapComponent } from './pages/higher-order-operators/switch-map/switch-map.component';
+import { SubjectsComponent } from './pages/Subjects/subjects/subjects.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +78,13 @@ import { MapToOperatorComponent } from './pages/transformation-operators/map-to-
     IgnoreElementsOperatorComponent,
     SingleOperatorComponent,
     MapOperatorComponent,
-    MapToOperatorComponent
+    MapToOperatorComponent,
+    AjaxComponent,
+    MergeMapComponent,
+    ConcatMapComponent,
+    ExhaustMapComponent,
+    SwitchMapComponent,
+    SubjectsComponent
   ],
   imports: [
     BrowserModule,

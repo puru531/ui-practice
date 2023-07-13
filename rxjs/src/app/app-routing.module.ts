@@ -29,6 +29,12 @@ import { IgnoreElementsOperatorComponent } from './pages/filtering-operators/ign
 import { SingleOperatorComponent } from './pages/filtering-operators/single-operator/single-operator.component';
 import { MapOperatorComponent } from './pages/transformation-operators/map-operator/map-operator.component';
 import { MapToOperatorComponent } from './pages/transformation-operators/map-to-operator/map-to-operator.component';
+import { AjaxComponent } from './pages/creation-operators/ajax/ajax.component';
+import { MergeMapComponent } from './pages/higher-order-operators/merge-map/merge-map.component';
+import { ConcatMapComponent } from './pages/higher-order-operators/concat-map/concat-map.component';
+import { ExhaustMapComponent } from './pages/higher-order-operators/exhaust-map/exhaust-map.component';
+import { SwitchMapComponent } from './pages/higher-order-operators/switch-map/switch-map.component';
+import { SubjectsComponent } from './pages/Subjects/subjects/subjects.component';
 
 const routes: Routes = [
   {
@@ -63,6 +69,12 @@ const routes: Routes = [
       { path: 'single', component: SingleOperatorComponent},
       { path: 'map', component: MapOperatorComponent},
       { path: 'mapto', component: MapToOperatorComponent},
+      { path: 'ajax', component: AjaxComponent},
+      { path: 'mergemap', component: MergeMapComponent},
+      { path: 'concatmap', component: ConcatMapComponent},
+      { path: 'exhaustmap', component: ExhaustMapComponent},
+      { path: 'switchmap', component: SwitchMapComponent},
+      { path: 'subjects', component: SubjectsComponent},
     ],
   },
 ];

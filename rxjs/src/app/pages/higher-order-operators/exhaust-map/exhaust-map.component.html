@@ -1,0 +1,6 @@
+<p>Projects each source value to an Observable which is merged in the output Observable only if the previous projected Observable has completed.</p>
+
+<p>Returns an Observable that emits items based on applying a function that you supply to each item emitted by the source Observable, where that function returns an (so-called "inner") Observable. When it projects a source value to an Observable, the output Observable begins emitting the items emitted by that projected Observable. However, exhaustMap ignores every new projected Observable if the previous projected Observable has not yet completed. Once that one completes, it will accept and flatten the next projected Observable and repeat this process.</p>
+
+<p>unlike concatMap it does not take keep source observable into buffer,
+  if anyvalue is emitted from source observable, in between while inner is executing, it will ignore that.</p>

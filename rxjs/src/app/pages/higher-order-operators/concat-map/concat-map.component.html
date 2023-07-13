@@ -1,0 +1,4 @@
+<p>Returns an Observable that emits items based on applying a function that you supply to each item emitted by the source Observable, where that function returns an (so-called "inner") Observable. Each new inner Observable is concatenated with the previous inner Observable.</p>
+<p>Warning: if source values arrive endlessly and faster than their corresponding inner Observables can complete, it will result in memory issues as inner Observables amass in an unbounded buffer waiting for their turn to be subscribed to.</p>
+<p>Note: concatMap is equivalent to mergeMap with concurrency parameter set to 1.</p>
+<p>It cares about order and emitts data from inner observable in order</p>

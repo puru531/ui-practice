@@ -1,0 +1,10 @@
+<h3>Subject</h3>
+<p>Subjects are special type of observables that allows values to be multicasted to many observers</p>
+<p>They are implemented as a child class of observables.</p>
+<p>Subjects are observers also, means that all subjects have methods like Next, error and complete ... As subjects are observers, they can also subscribe to observables.</p>
+<p>Every Subject is an Observable. Given a Subject, you can subscribe to it, providing an Observer, which will start receiving values normally. From the perspective of the Observer, it cannot tell whether the Observable execution is coming from a plain unicast Observable or a Subject. <br> Internally to the Subject, subscribe does not invoke a new execution that delivers values. It simply registers the given Observer in a list of Observers, similarly to how addListener usually works in other libraries and languages.</p>
+<p>Every Subject is an Observer. It is an object with the methods next(v), error(e), and complete(). To feed a new value to the Subject, just call next(theValue), and it will be multicasted to the Observers registered to listen to the Subject.</p>
+
+<h3>Multicast & Unicast</h3>
+<p>Unicast : sending data to single observer.</p>
+<p>Multicast : sending data to multiple observers at a time. Subject can susbsribe to observables, and since subject is also a subclass of observables, it can also be subscribed by other observers. <br><br> When multiple obsevers subscribes to the subject, it maintains an array of observers, In this way, when subject recieves value from an observable, then it passes to all the observers present in the observers array.</p>

@@ -1,0 +1,6 @@
+<p>Projects each source value to an Observable which is merged in the output Observable, emitting values only from the most recently projected Observable.</p>
+<p>Maps each value to an Observable, then flattens all of these inner Observables using switchAll.</p>
+<p>Returns an Observable that emits items based on applying a function that you supply to each item emitted by the source Observable, where that function returns an (so-called "inner") Observable. Each time it observes one of these inner Observables, the output Observable begins emitting the items emitted by that inner Observable. When a new inner Observable is emitted, switchMap stops emitting items from the earlier-emitted inner Observable and begins emitting items from the new one. It continues to behave like this for subsequent inner Observables.</p>
+
+<p>while inner observable is emiiting the values, in between if new value is emitted by source observable,
+ then it will leave emiiting that and start emitting with new emiited value from source observable</p>
