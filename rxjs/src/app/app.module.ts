@@ -3,45 +3,46 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NewObservableComponent } from './components/new-observable/new-observable.component';
-import { FunctionsObservableComponent } from './components/functions-observable/functions-observable.component';
-import { CancellingObservableComponent } from './components/cancelling-observable/cancelling-observable.component';
-import { OperatorBasicsComponent } from './components/operator-basics/operator-basics.component';
-import { OperatorsComponent } from './pages/operators/operators.component';
-import { BufferTimeOperatorComponent } from './pages/transformation-operators/buffer-time-operator/buffer-time-operator.component';
-import { BufferOperatorComponent } from './pages/transformation-operators/buffer-operator/buffer-operator.component';
-import { BufferCountOperatorComponent } from './pages/transformation-operators/buffer-count-operator/buffer-count-operator.component';
-import { BufferToggleOperatorComponent } from './pages/transformation-operators/buffer-toggle-operator/buffer-toggle-operator.component';
-import { TakeOperatorComponent } from './pages/filtering-operators/take-operator/take-operator.component';
-import { BufferWhenOperatorComponent } from './pages/transformation-operators/buffer-when-operator/buffer-when-operator.component';
-import { TakeLastOperatorComponent } from './pages/filtering-operators/take-last-operator/take-last-operator.component';
-import { TakeUntilComponent } from './pages/filtering-operators/take-untill/take-untill.component';
-import { TakeWhileComponent } from './pages/filtering-operators/take-while/take-while.component';
-import { SkipOperatorComponent } from './pages/filtering-operators/skip-operator/skip-operator.component';
-import { SkipLastOperatorComponent } from './pages/filtering-operators/skip-last-operator/skip-last-operator.component';
-import { SkipUntilOperatorComponent } from './pages/filtering-operators/skip-until-operator/skip-until-operator.component';
-import { SkipWhileOperatorComponent } from './pages/filtering-operators/skip-while-operator/skip-while-operator.component';
-import { DistinctOperatorComponent } from './pages/filtering-operators/distinct-operator/distinct-operator.component';
-import { DistinctUntilChangedOperatorComponent } from './pages/filtering-operators/distinct-until-changed-operator/distinct-until-changed-operator.component';
-import { DistinctUntilKeyChangedComponent } from './pages/filtering-operators/distinct-until-key-changed/distinct-until-key-changed.component';
-import { FilterOperatorComponent } from './pages/filtering-operators/filter-operator/filter-operator.component';
-import { SampleOperatorComponent } from './pages/filtering-operators/sample-operator/sample-operator.component';
-import { AuditOperatorComponent } from './pages/filtering-operators/audit-operator/audit-operator.component';
-import { ThrottleOperatorComponent } from './pages/filtering-operators/throttle-operator/throttle-operator.component';
-import { FirstOperatorComponent } from './pages/filtering-operators/first-operator/first-operator.component';
-import { LastOperatorComponent } from './pages/filtering-operators/last-operator/last-operator.component';
-import { DebounceOperatorComponent } from './pages/filtering-operators/debounce-operator/debounce-operator.component';
-import { ElementAtOperatorComponent } from './pages/filtering-operators/element-at-operator/element-at-operator.component';
-import { IgnoreElementsOperatorComponent } from './pages/filtering-operators/ignore-elements-operator/ignore-elements-operator.component';
-import { SingleOperatorComponent } from './pages/filtering-operators/single-operator/single-operator.component';
-import { MapOperatorComponent } from './pages/transformation-operators/map-operator/map-operator.component';
-import { MapToOperatorComponent } from './pages/transformation-operators/map-to-operator/map-to-operator.component';
-import { AjaxComponent } from './pages/creation-operators/ajax/ajax.component';
-import { MergeMapComponent } from './pages/higher-order-operators/merge-map/merge-map.component';
-import { ConcatMapComponent } from './pages/higher-order-operators/concat-map/concat-map.component';
-import { ExhaustMapComponent } from './pages/higher-order-operators/exhaust-map/exhaust-map.component';
-import { SwitchMapComponent } from './pages/higher-order-operators/switch-map/switch-map.component';
-import { SubjectsComponent } from './pages/Subjects/subjects/subjects.component';
+import { CancellingObservableComponent } from './components/Basics/cancelling-observable/cancelling-observable.component';
+import { OperatorsComponent } from './components/pages/operators/operators.component';
+import { BufferTimeOperatorComponent } from './components/pages/operators/transformation-operators/buffer-time-operator/buffer-time-operator.component';
+import { BufferOperatorComponent } from './components/pages/operators/transformation-operators/buffer-operator/buffer-operator.component';
+import { BufferCountOperatorComponent } from './components/pages/operators/transformation-operators/buffer-count-operator/buffer-count-operator.component';
+import { BufferToggleOperatorComponent } from './components/pages/operators/transformation-operators/buffer-toggle-operator/buffer-toggle-operator.component';
+import { TakeOperatorComponent } from './components/pages/operators/filtering-operators/take-operator/take-operator.component';
+import { BufferWhenOperatorComponent } from './components/pages/operators/transformation-operators/buffer-when-operator/buffer-when-operator.component';
+import { TakeLastOperatorComponent } from './components/pages/operators/filtering-operators/take-last-operator/take-last-operator.component';
+import { TakeUntilComponent } from './components/pages/operators/filtering-operators/take-untill/take-untill.component';
+import { TakeWhileComponent } from './components/pages/operators/filtering-operators/take-while/take-while.component';
+import { SkipOperatorComponent } from './components/pages/operators/filtering-operators/skip-operator/skip-operator.component';
+import { SkipLastOperatorComponent } from './components/pages/operators/filtering-operators/skip-last-operator/skip-last-operator.component';
+import { SkipUntilOperatorComponent } from './components/pages/operators/filtering-operators/skip-until-operator/skip-until-operator.component';
+import { SkipWhileOperatorComponent } from './components/pages/operators/filtering-operators/skip-while-operator/skip-while-operator.component';
+import { DistinctOperatorComponent } from './components/pages/operators/filtering-operators/distinct-operator/distinct-operator.component';
+import { DistinctUntilChangedOperatorComponent } from './components/pages/operators/filtering-operators/distinct-until-changed-operator/distinct-until-changed-operator.component';
+import { DistinctUntilKeyChangedComponent } from './components/pages/operators/filtering-operators/distinct-until-key-changed/distinct-until-key-changed.component';
+import { FilterOperatorComponent } from './components/pages/operators/filtering-operators/filter-operator/filter-operator.component';
+import { SampleOperatorComponent } from './components/pages/operators/filtering-operators/sample-operator/sample-operator.component';
+import { AuditOperatorComponent } from './components/pages/operators/filtering-operators/audit-operator/audit-operator.component';
+import { ThrottleOperatorComponent } from './components/pages/operators/filtering-operators/throttle-operator/throttle-operator.component';
+import { FirstOperatorComponent } from './components/pages/operators/filtering-operators/first-operator/first-operator.component';
+import { LastOperatorComponent } from './components/pages/operators/filtering-operators/last-operator/last-operator.component';
+import { DebounceOperatorComponent } from './components/pages/operators/filtering-operators/debounce-operator/debounce-operator.component';
+import { ElementAtOperatorComponent } from './components/pages/operators/filtering-operators/element-at-operator/element-at-operator.component';
+import { IgnoreElementsOperatorComponent } from './components/pages/operators/filtering-operators/ignore-elements-operator/ignore-elements-operator.component';
+import { SingleOperatorComponent } from './components/pages/operators/filtering-operators/single-operator/single-operator.component';
+import { MapOperatorComponent } from './components/pages/operators/transformation-operators/map-operator/map-operator.component';
+import { MapToOperatorComponent } from './components/pages/operators/transformation-operators/map-to-operator/map-to-operator.component';
+import { AjaxComponent } from './components/pages/operators/creation-operators/ajax/ajax.component';
+import { MergeMapComponent } from './components/pages/operators/higher-order-operators/merge-map/merge-map.component';
+import { ConcatMapComponent } from './components/pages/operators/higher-order-operators/concat-map/concat-map.component';
+import { ExhaustMapComponent } from './components/pages/operators/higher-order-operators/exhaust-map/exhaust-map.component';
+import { SwitchMapComponent } from './components/pages/operators/higher-order-operators/switch-map/switch-map.component';
+import { SubjectsComponent } from './components/pages/subjects/subjects.component';
+import { AboutSubjectsComponent } from './components/pages/subjects/about-subjects/about-subjects.component';
+import { NewObservableComponent } from './components/Basics/new-observable/new-observable.component';
+import { FunctionsObservableComponent } from './components/Basics/functions-observable/functions-observable.component';
+import { OperatorBasicsComponent } from './components/Basics/operator-basics/operator-basics.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { SubjectsComponent } from './pages/Subjects/subjects/subjects.component'
     ConcatMapComponent,
     ExhaustMapComponent,
     SwitchMapComponent,
-    SubjectsComponent
+    SubjectsComponent,
+    AboutSubjectsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+.heading {
+  background-color:brown;
+  padding: 10px;
+  color: white;
+}
+.content {
+  padding-top: 50px;
+  padding-left: 20px;
+  flex: 4;
+  background-color:azure
+}
+.operators {
+  display: flex;
+  background-color: lightgrey;
+}
