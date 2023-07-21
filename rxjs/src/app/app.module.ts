@@ -43,6 +43,7 @@ import { AboutSubjectsComponent } from './components/pages/subjects/about-subjec
 import { NewObservableComponent } from './components/Basics/new-observable/new-observable.component';
 import { FunctionsObservableComponent } from './components/Basics/functions-observable/functions-observable.component';
 import { OperatorBasicsComponent } from './components/Basics/operator-basics/operator-basics.component';
+import { ColdHotObservablesComponent } from './components/pages/subjects/cold-hot-observables/cold-hot-observables.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { OperatorBasicsComponent } from './components/Basics/operator-basics/ope
     ExhaustMapComponent,
     SwitchMapComponent,
     SubjectsComponent,
-    AboutSubjectsComponent
+    AboutSubjectsComponent,
+    ColdHotObservablesComponent
   ],
   imports: [
     BrowserModule,

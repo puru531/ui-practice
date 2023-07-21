@@ -36,6 +36,7 @@ import { ExhaustMapComponent } from './components/pages/operators/higher-order-o
 import { SwitchMapComponent } from './components/pages/operators/higher-order-operators/switch-map/switch-map.component';
 import { SubjectsComponent } from './components/pages/subjects/subjects.component';
 import { AboutSubjectsComponent } from './components/pages/subjects/about-subjects/about-subjects.component';
+import { ColdHotObservablesComponent } from './components/pages/subjects/cold-hot-observables/cold-hot-observables.component';
 
 const routes: Routes = [
   {
@@ -82,6 +83,7 @@ const routes: Routes = [
     component: SubjectsComponent,
     children: [
       { path: 'aboutsubject', component: AboutSubjectsComponent},
+      { path: 'coldhot', component: ColdHotObservablesComponent},
     ],
   }
 ];
