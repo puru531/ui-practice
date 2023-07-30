@@ -1,0 +1,10 @@
+<p>Unlike Subject, (which doesn't take any default value as the default parameter), <br>
+Behavior Subject takes the dafault value while declaring the subject.
+<br> Also it stores the last emitted value.
+</p>
+
+<p>let behaviourSubject$ new behaviourSubject(0)
+  <br>It will take 0 as the initial value.
+</p>
+<p>behaviourSubject sends the initial Value to the observer when subscribed before emitting the value. <br>
+After value is emitted, the behaviourSubject sneds the latest value to all the observers. </p>

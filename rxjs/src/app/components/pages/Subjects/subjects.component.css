@@ -13,3 +13,6 @@
   display: flex;
   background-color: lightgrey;
 }
+.topic {
+  margin-bottom: 10px;
+}

@@ -1,0 +1,23 @@
+<p>Replay subject is another type in the subject. <br>
+It replays all the old values to the new subscribers, when they subscribes for the first time.
+</p>
+<p>There are two main configuration items to be concerned with : (both are optional)<br>
+<strong>Buffer Size : </strong> It determines how many items are stored in the buffer, defaults to infinite.
+<br>
+<strong>Windowtime (in milisecond) : </strong> The amount of time to hold the value in the buffer before removing it from the buffer.
+</p>
+
+<p>Replay subject has an internal buffer that stores a specified number of values that it has observed.
+<br>
+Like Subjects, ReplaySubject observes values by having them passed to its next method.
+<br>
+When It observes a value, it will store that value for a time determined by the configuration pf the ReplaySubject, as passed to its constructor.
+</p>
+
+<p>Both configurations can exist simultaneously. eg. ReplaySubject(2, 3000)</p>
+
+<p>behaviorsubject is similar to new ReplaySubject(1), with couple of exceptions:
+  <br> behaviorsubject has default value.
+  <br> ReplaySubject will replay values, even after observing an error, whereas behaviorsubject will not.
+</p>
+

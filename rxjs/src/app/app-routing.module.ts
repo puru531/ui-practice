@@ -37,6 +37,11 @@ import { SwitchMapComponent } from './components/pages/operators/higher-order-op
 import { SubjectsComponent } from './components/pages/subjects/subjects.component';
 import { AboutSubjectsComponent } from './components/pages/subjects/about-subjects/about-subjects.component';
 import { ColdHotObservablesComponent } from './components/pages/subjects/cold-hot-observables/cold-hot-observables.component';
+import { ConnectableObservablesComponent } from './components/pages/subjects/connectable-observables/connectable-observables.component';
+import { ShareOperatorComponent } from './components/pages/subjects/share-operator/share-operator.component';
+import { BehaviorSubjectComponent } from './components/pages/subjects/behavior-subject/behavior-subject.component';
+import { ReplaySubjectComponent } from './components/pages/subjects/replay-subject/replay-subject.component';
+import { AsyncSubjectComponent } from './components/pages/subjects/async-subject/async-subject.component';
 
 const routes: Routes = [
   {
@@ -84,6 +89,11 @@ const routes: Routes = [
     children: [
       { path: 'aboutsubject', component: AboutSubjectsComponent},
       { path: 'coldhot', component: ColdHotObservablesComponent},
+      { path: 'connectable', component: ConnectableObservablesComponent},
+      { path: 'share', component: ShareOperatorComponent},
+      { path: 'behaviorsubject', component: BehaviorSubjectComponent},
+      { path: 'replaysubject', component: ReplaySubjectComponent},
+      { path: 'asyncsubject', component: AsyncSubjectComponent},
     ],
   }
 ];

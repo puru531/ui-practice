@@ -44,6 +44,11 @@ import { NewObservableComponent } from './components/Basics/new-observable/new-o
 import { FunctionsObservableComponent } from './components/Basics/functions-observable/functions-observable.component';
 import { OperatorBasicsComponent } from './components/Basics/operator-basics/operator-basics.component';
 import { ColdHotObservablesComponent } from './components/pages/subjects/cold-hot-observables/cold-hot-observables.component';
+import { ConnectableObservablesComponent } from './components/pages/subjects/connectable-observables/connectable-observables.component';
+import { ShareOperatorComponent } from './components/pages/subjects/share-operator/share-operator.component';
+import { BehaviorSubjectComponent } from './components/pages/subjects/behavior-subject/behavior-subject.component';
+import { ReplaySubjectComponent } from './components/pages/subjects/replay-subject/replay-subject.component';
+import { AsyncSubjectComponent } from './components/pages/subjects/async-subject/async-subject.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +93,12 @@ import { ColdHotObservablesComponent } from './components/pages/subjects/cold-ho
     SwitchMapComponent,
     SubjectsComponent,
     AboutSubjectsComponent,
-    ColdHotObservablesComponent
+    ColdHotObservablesComponent,
+    ConnectableObservablesComponent,
+    ShareOperatorComponent,
+    BehaviorSubjectComponent,
+    ReplaySubjectComponent,
+    AsyncSubjectComponent
   ],
   imports: [
     BrowserModule,
