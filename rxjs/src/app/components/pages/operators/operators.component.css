@@ -3,16 +3,25 @@
   padding: 10px;
   color: white;
 }
+.topic-container {
+  max-height: calc(100vh - 75px);
+  overflow: scroll;
+}
 .content {
   padding-top: 50px;
   padding-left: 20px;
   flex: 4;
-  background-color:azure
+  background-color:azure;
+  max-height: calc(100vh - 75px);
+  overflow: scroll;
 }
 .operators {
   display: flex;
   background-color: lightgrey;
 }
 .topic {
-  margin-bottom: 10px;
+  padding: 8px 0;
+}
+.topic:hover {
+  background-color: beige;
 }

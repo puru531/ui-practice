@@ -1,0 +1,5 @@
+<p>Accepts an Array of ObservableInput or a dictionary Object of ObservableInput and returns an Observable that emits either an array of values in the exact same order as the passed array, or a dictionary of values in the same shape as the passed dictionary.</p>
+<p>Wait for Observables to complete and then combine last values they emitted; complete immediately if an empty array is passed.</p>
+<p>forkJoin is an operator that takes any number of input observables which can be passed either as an array or a dictionary of input observables. If no input observables are provided (e.g. an empty array is passed), then the resulting stream will complete immediately.</p>
+<p>forkJoin will wait for all passed observables to emit and complete and then it will emit an array or an object with last values from corresponding observables.</p>
+<p>If you pass an array of n observables to the operator, then the resulting array will have n values, where the first value is the last one emitted by the first observable, second value is the last one emitted by the second observable and so on.</p>

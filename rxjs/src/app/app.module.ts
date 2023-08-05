@@ -49,6 +49,17 @@ import { ShareOperatorComponent } from './components/pages/subjects/share-operat
 import { BehaviorSubjectComponent } from './components/pages/subjects/behavior-subject/behavior-subject.component';
 import { ReplaySubjectComponent } from './components/pages/subjects/replay-subject/replay-subject.component';
 import { AsyncSubjectComponent } from './components/pages/subjects/async-subject/async-subject.component';
+import { VoidSubjectComponent } from './components/pages/subjects/void-subject/void-subject.component';
+import { CatchErrorComponent } from './components/pages/operators/error-handling-operators/catch-error/catch-error.component';
+import { RetryOperatorComponent } from './components/pages/operators/error-handling-operators/retry-operator/retry-operator.component';
+import { CombineLatestComponent } from './components/pages/operators/join-creation-operators/combine-latest/combine-latest.component';
+import { ConcatComponent } from './components/pages/operators/join-creation-operators/concat/concat.component';
+import { ForkJoinComponent } from './components/pages/operators/join-creation-operators/fork-join/fork-join.component';
+import { MergeComponent } from './components/pages/operators/join-creation-operators/merge/merge.component';
+import { PartitionComponent } from './components/pages/operators/join-creation-operators/partition/partition.component';
+import { RaceComponent } from './components/pages/operators/join-creation-operators/race/race.component';
+import { ZipComponent } from './components/pages/operators/join-creation-operators/zip/zip.component';
+import { SchedulersComponent } from './components/pages/operators/schedulers/schedulers.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +109,18 @@ import { AsyncSubjectComponent } from './components/pages/subjects/async-subject
     ShareOperatorComponent,
     BehaviorSubjectComponent,
     ReplaySubjectComponent,
-    AsyncSubjectComponent
+    AsyncSubjectComponent,
+    VoidSubjectComponent,
+    CatchErrorComponent,
+    RetryOperatorComponent,
+    CombineLatestComponent,
+    ConcatComponent,
+    ForkJoinComponent,
+    MergeComponent,
+    PartitionComponent,
+    RaceComponent,
+    ZipComponent,
+    SchedulersComponent
   ],
   imports: [
     BrowserModule,

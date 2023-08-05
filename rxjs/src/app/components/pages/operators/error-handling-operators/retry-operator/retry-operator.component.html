@@ -1,0 +1,5 @@
+<p>Returns an Observable that mirrors the source Observable with the exception of an error</p>
+<p>A function that returns an Observable that will resubscribe to the source stream when the source stream errors, at most count times.</p>
+
+<p>If the source Observable calls error, this method will resubscribe to the source Observable for a maximum of count resubscriptions rather than propagating the error call.</p>
+<p>The number of retries is determined by the count parameter. It can be set either by passing a number to retry function or by setting count property when retry is configured using RetryConfig. If count is omitted, retry will try to resubscribe on errors infinite number of times.</p>

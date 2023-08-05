@@ -1,0 +1,17 @@
+
+<p> A scheduler controls when a subscription starts and when notifications are delivered. It consists of three components.
+
+<br><br>A Scheduler is a data structure. It knows how to store and queue tasks based on priority or other criteria.
+<br><br>A Scheduler is an execution context. It denotes where and when the task is executed (e.g. immediately, or in another callback mechanism such as setTimeout or process.nextTick, or the animation frame).
+<br><br>A Scheduler has a (virtual) clock. It provides a notion of "time" by a getter method now() on the scheduler. Tasks being scheduled on a particular scheduler will adhere only to the time denoted by that clock.
+<br><br>A Scheduler lets you define in what execution context will an Observable deliver notifications to its Observer.
+</p>
+<br><br><br><br>
+<p>
+  null	: By not passing any scheduler, notifications are delivered synchronously and recursively. Use this for constant-time operations or tail recursive operations.
+<br><br>queueScheduler	: Schedules on a queue in the current event frame (trampoline scheduler). Use this for iteration operations.
+<br><br> asapScheduler	: Schedules on the micro task queue, which is the same queue used for promises. Basically after the current job, but before the next job. Use this for asynchronous conversions.
+<br><br>asyncScheduler	: Schedules work with setInterval. Use this for time-based operations.
+<br><br>nimationFrameScheduler	 : Schedules task that will happen just before next browser content repaint. Can be used to create smooth browser animations.
+
+</p>

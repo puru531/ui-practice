@@ -1,0 +1,4 @@
+<p>Creates an output Observable which concurrently emits all values from every given input Observable.</p>
+<p>Flattens multiple Observables together by blending their values into one Observable.</p>
+
+<p>merge subscribes to each given input Observable (as arguments), and simply forwards (without doing any transformation) all the values from all the input Observables to the output Observable. The output Observable only completes once all input Observables have completed. Any error delivered by an input Observable will be immediately emitted on the output Observable.</p>
