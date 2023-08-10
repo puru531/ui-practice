@@ -60,6 +60,14 @@ import { PartitionComponent } from './components/pages/operators/join-creation-o
 import { RaceComponent } from './components/pages/operators/join-creation-operators/race/race.component';
 import { ZipComponent } from './components/pages/operators/join-creation-operators/zip/zip.component';
 import { SchedulersComponent } from './components/pages/operators/schedulers/schedulers.component';
+import { DeferOperatorComponent } from './components/pages/operators/creation-operators/defer-operator/defer-operator.component';
+import { RangeComponent } from './components/pages/operators/creation-operators/range/range.component';
+import { GenerateComponent } from './components/pages/operators/creation-operators/generate/generate.component';
+import { TimerComponent } from './components/pages/operators/creation-operators/timer/timer.component';
+import { CountComponent } from './components/pages/operators/mathematical-and-aggregate-operators/count/count.component';
+import { MaxComponent } from './components/pages/operators/mathematical-and-aggregate-operators/max/max.component';
+import { MinComponent } from './components/pages/operators/mathematical-and-aggregate-operators/min/min.component';
+import { ReduceComponent } from './components/pages/operators/mathematical-and-aggregate-operators/reduce/reduce.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +128,15 @@ import { SchedulersComponent } from './components/pages/operators/schedulers/sch
     PartitionComponent,
     RaceComponent,
     ZipComponent,
-    SchedulersComponent
+    SchedulersComponent,
+    DeferOperatorComponent,
+    RangeComponent,
+    GenerateComponent,
+    TimerComponent,
+    CountComponent,
+    MaxComponent,
+    MinComponent,
+    ReduceComponent
   ],
   imports: [
     BrowserModule,

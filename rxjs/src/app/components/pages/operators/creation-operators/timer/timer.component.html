@@ -1,0 +1,8 @@
+<p>Used to emit a notification after a delay.</p>
+<p>This observable is useful for creating delays in code, or racing against other values for ad-hoc timeouts.
+
+  The delay is specified by default in milliseconds, however providing a custom scheduler could create a different behavior.</p>
+
+  <p>Known Limitations  </p>
+  <p>The asyncScheduler uses setTimeout which has limitations for how far in the future it can be scheduled.</p>
+  <p>If a scheduler is provided that returns a timestamp other than an epoch from now(), and a Date object is passed to the dueTime argument, the calculation for when the first emission should occur will be incorrect. In this case, it would be best to do your own calculations ahead of time, and pass a number in as the dueTime.</p>
