@@ -5,7 +5,7 @@ const messages = [
   "Apply for jobs 💼",
   "Invest your new income 🤑",
 ];
-export default function App() {
+export default function AppV1() {
   //All react function that starts with 'use' are hooks. e.g. useEffect, useReducer, useState.
   //We can only call hooks on top level of root function, inside i, loop or any function.
   //We must not update state manually
@@ -51,22 +51,21 @@ export default function App() {
             Step {step}: {messages[step - 1]}
           </p>
           <div className="buttons">
-            <Button text="Previous" textColor="#fff" bgColor="#7950f2" onClick={handlePrevious} />
-            <Button text="Next" textColor="#fff" bgColor="#7950f2" onClick={handleNext} />
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handlePrevious}
+            >
+              Previous
+            </button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handleNext}
+            >
+              Next
+            </button>
           </div>
         </div>
       )}
     </>
   );
-}
-
-function Button({textColor, bgColor, onClick, text}) {
-  return (
-    <button
-      style={{ backgroundColor: `${bgColor}`, color: `${textColor}` }}
-      onClick={onClick}
-    >
-      {text}
-    </button>
-  )
 }

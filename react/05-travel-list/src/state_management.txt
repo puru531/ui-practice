@@ -1,0 +1,13 @@
+------- Fundamentals of State Management -------------
+1. What is State Management ?
+Deciding when to create a piece of state, what type of states are necessary, where to place eaxh piece of state, and how data flows through the app.
+
+Two types of state in react
+1. Local state 
+  > Only needed only by one component or few componenents (child componenents)
+  > State that is defined in a component and only that component and child components have access to it (by passing via props)
+
+2. Global state
+  > State that many component might need.
+  > Shared state that is accessible to every component in the entire application.
+
