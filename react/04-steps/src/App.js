@@ -51,22 +51,30 @@ export default function App() {
             Step {step}: {messages[step - 1]}
           </p>
           <div className="buttons">
-            <Button text="Previous" textColor="#fff" bgColor="#7950f2" onClick={handlePrevious} />
-            <Button text="Next" textColor="#fff" bgColor="#7950f2" onClick={handleNext} />
+            <Button
+              textColor="#fff"
+              bgColor="#7950f2"
+              onClick={handlePrevious}
+            ><span>👈</span> Previous</Button>
+            <Button
+              textColor="#fff"
+              bgColor="#7950f2"
+              onClick={handleNext}
+              >Next <span>👉</span></Button>
           </div>
         </div>
       )}
     </>
   );
 }
-
-function Button({textColor, bgColor, onClick, text}) {
+//children prop --> value between opening and closing tag of the component
+function Button({ textColor, bgColor, onClick, children }) {
   return (
     <button
       style={{ backgroundColor: `${bgColor}`, color: `${textColor}` }}
       onClick={onClick}
     >
-      {text}
+      {children}
     </button>
-  )
+  );
 }
