@@ -25,6 +25,26 @@ export default function App() {
     </div>
   );
 }
+//React element
+console.log(<DifferentContent test={23} />);
+/*
+This will return an object of react elements, which contains all the information about the component,
+It conts information like $$typeof, key, props, type: DifferentContent() ... etc.
+$$typeof is a security feature that React has implemented in order to protect us from cross site 
+scrpting attacks. It is of type Symbol, which is one of the JavaScript primitive which cannot 
+be transmitted via JSON. This means that a symbol like this cannot come from API.
+So if some hackers would try to send us a fake react element from any API, then React would 
+not see that $$typeof as Symbol. because Symbols cannot be transmitted via JSON. Then react would
+not include that fake react element into the DOM. 
+*/
+
+console.log(DifferentContent());
+/*
+in this case, we get $$typeof as Symbol but type is "div" instead,
+Beasuse unlike above <DifferentContent test={23} /> in which React was considering as React component element
+This time, it considers it as React raw element
+
+*/
 
 function Tabbed({ content }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -37,12 +57,25 @@ function Tabbed({ content }) {
         <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
-
+      {/* ---------------- Direct consequence of Diffing rules ------------- */}
+      {/* Here the state is changing, but element is same, so if if content is hidded and 
+      number of likes is 4 then it will remain in same state even if we change the tab. 
+      becuase the state inside that component will remain unchanged.
+      
+      But as soon as we click on tab 4, we replace the current element with another one,
+      so the TabContent will be removed from DOM and state will be reset.
+      Again if we go to any other tab(1,2,3), it will start fresh with states reset
+      
+      To solve this problem we need to use key prop.
+      */}
       {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
+        <TabContent item={content.at(activeTab)} key={activeTab} />
       ) : (
         <DifferentContent />
       )}
+      {/* This will sload content inside it in DOM, but will not include in React Component tree.
+      So it cannot manage its own state. */}
+      {/* {TabContent({ item: content.at(0) })}  */}
     </div>
   );
 }

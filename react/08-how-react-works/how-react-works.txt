@@ -1,0 +1,129 @@
+-------------- COMPONENTS, INSTANCES, AND ELEMENTS --------------
+COMPONENTS :
+A component is a description piece of UI.
+A component is a function that returns React Elements (element tree), usually written in JSX
+We can call this as a ''Blueprint' or 'Template'
+We can create multiple instance of components and use it multiple times.
+
+Instances are created when we use components
+React internally calls the components
+So we can say, instances are actual 'Physical" menifestation of a component.
+Each instances has its own state and props
+Each instance has a lifecycle (can "be born", "live", and "die")
+
+As React executes the code in each of these instances, each of them will return one or more Rearct Elements.
+So, behind the scenes the JSX is converted into multiple React.createElement() function calls
+And the result of React.createElement() function calls will be a React element.
+React element contains all the information needed to create DOM elements for the current component instance.
+It is simply an immutable JavaScript object that react keeps in memory. and conevrted in DOM elements
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+--------------------- HOW RENDERING WORKS --------------------
+
+(In React, rendering is NOT updating the DOM or displaying elements on the screen.
+Rendering only happens internally inside the react, it does not produce visual changes. 
+Actualyt meaning of Render is Render Phase + Commit Phase)
+Steps of rendering:
+1. Render is Triggered  --> By updating state somewhere
+2. Render Phase --> React calls component functions and figures out how DOM should be updated
+3. Commit Phase --> React actually writes to the DOM, updating, inserting and deleting elements.
+4. Browser Paint --> Nothing to with react anymore, final step to produce visual change on the screens.
+
+--------------------- Render is Triggered -----------------------
+The two situations that trigger renders:
+1. initial render of the application
+2. State is updated in one or more component instances. (re-render)
+
+The render process is triggered for the entire application, not jsut one component. That doesn't mean entire DOM is updated, it means calling the component function and figuring out what needs to change in the DOM later.
+
+In practice, it looks like React only re-renders the component where state update happens, but that's not how it works behind the scenes, It checks all the component tree.
+
+Renders are not triggered immediately, but scheduled for when JS engine has some "free-time". There is also batching of multiple setState calls in the event handlers. But it happens in miliseconds, that we are not able to notice.
+
+------------------------------- Render Phase --------------------------
+At the beginning of the render phase React will go through the entire component tree, take all the component instances that triggered a re-render and actually render them.
+Which simply means to call the corresponding component functions that we have written our code.
+This will create updated React Elements, which all together will make New React Element tree or New Virtual DOM . 
+
+---- What is Virtual DOM : On the initial render, react will take the entire component tree and transform it into one big react element. Which is React Element tree, Called Virtual DOM.
+
+So, Virtual DOM is Tree of all React Elements created from instances in the component tree.
+It is relatively cheap and fast to create multiple trees. 
+
+Virtual DOM has nothing to do with "Shadow DOM". Shadow DOM is a Browser Technology used in web components. 
+
+Suppose a state is updated in a component, then react will create new updated React Element Tree (Virtual DOM). And whenever React re-renders a component, it will cause all its child components to be re-rendered. (NO matter if props changed or not). This means if you update the highest component in the component tree, then entire application will be re-rendered. (Beause React doesn't know that after an update in parent, children will be affected or not).
+
+This doesn't mean that the entire DOM is updated. Just the virtual DOM will be re-created.
+-----
+
+This new virtual DOM which is created after the state update will get reconciled with with the current Fibre Tree (before state update). This Reciliation is done in React's Reconciler, which is called Fibre.
+The result of this reconciliation process is gonna be an updated fibre tree. A tree that will be used to write to the DOM. 
+
+------ 
+What is Reconciliation and how it works?
+It would be wasteful and inefficient to always write the entire Virtual DOM to the actual DOM.
+When a state is changed, only a small part of the DOM needs to be updated. And reacts does exactly that. React reuses as much of the existign DOM as possible. But How ?
+
+Reconciliation : Deciding which DOM elemens actually need to be inserted, deleted, or updated in order to reflect the latest state changes. This is done using reconciler, which does not allow react to directly touch the DOM.
+
+The current Reconciler is known as "Fiber".
+Fiber : 
+During the initial render of the application fiber takes the entire React Element tree (Virtual DOM), and based on it build another tree which is known as "Fiber Tree". 
+The Fiber Tree is a special internal tree where for each component instance and DOM element in the app, there is one so called "Fiber".
+
+Unlike React element in the virtual DOM, Fibres are not created on every render. So the Fibre tree is never destroyed. Instead its a mutable Data Structure. And once it has been created during the initial render, it is simply mutated over and over again in future reconciliation steps.
+
+Each Fibre also conrtains the queue of work to do. like upadating state, updating refs, running regidtered side-effects, performing DOM updates, and so on. 
+
+This is why a Fiber is also defined as a unit of work.
+Work can be performed Asynchrously. Which means that Rendering process can be split into chunks, tasks can be prioritized, and work can be paused, reused, or thrown away.
+-------
+After reconciliation React has list of DOM updates (Result of render phase (list of effects))
+which will be used in Commit phase.
+
+
+---------------------------------- Commit Phase --------------------------------
+The final result of Render phase (List of DOM updates) will be used in Commit phase.
+The commit phase is where React finally writes to the DOM (insertions, deletion, and updates (List of DOM updates are "flushed" to the DOM)).
+
+Writing to the DOM happens all in one go. SO we can say that Committing is synchronous: It can't be interupted. This is necessary so that the DOM never shows partial results, ensuring a consistent UI (in sync with state all times).
+
+After the commit phase completes, the workInProgress fiber tree becomes the current tree for the next render cycle.
+------------
+Render phase is done by React. 
+Commit phase is done by separate library called ReactDOM (React itself never touch the DOM).
+
+------------------------------
+How Diffing works ?
+In render phase we have two different process (Reconciliation + Diffing).
+
+Diffing is comparing the elements step by step between two renders based on their position in the tree. 
+
+Diffing is based on fundamental assumptions (rules). 
+1. Two elements of different types will produce different trees.
+2. Elements with a stable key props stay the same across renders.
+ This allows React to go from 1,000,000,000 [O(n^3)] to 1000 [O(n)] operations per 1000 elements.
+
+After any state change, if we render any other element in place of that, then previous element will entirely be removed along with its child, and resets the props of the child.
+Suppose on a state change we render a header element in place of a div, and that div was containing a Search Bar component, then that search bar will be completely removed and its props will reset, and will re create search bar even if header element conatins the same search bar component.
+
+BUt in case if we do not change the element, instead we change some properties on state change then Diffing will just mutate the existing React element. and the state will not be destroyed. If we want to re-create the child element, then key props helps us doing that.
+
+------------------------
+The key prop :
+The key prop is a special prop that we use to tell the diffing algorithm that element is unique. 
+It Allows React to distinguish between multiple instances of the same component type.
+
+So that while diffing it should be considred as unique element and state can be reset.
+because when a key changes between renders, the element will be destroyed and a new one will be created (even if the position in the tree is the same as before.)
+
+--------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
+
