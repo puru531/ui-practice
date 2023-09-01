@@ -26,7 +26,7 @@ export default function App() {
   );
 }
 //React element
-console.log(<DifferentContent test={23} />);
+// console.log(<DifferentContent test={23} />);
 /*
 This will return an object of react elements, which contains all the information about the component,
 It conts information like $$typeof, key, props, type: DifferentContent() ... etc.
@@ -38,7 +38,7 @@ not see that $$typeof as Symbol. because Symbols cannot be transmitted via JSON.
 not include that fake react element into the DOM. 
 */
 
-console.log(DifferentContent());
+// console.log(DifferentContent());
 /*
 in this case, we get $$typeof as Symbol but type is "div" instead,
 Beasuse unlike above <DifferentContent test={23} /> in which React was considering as React component element
@@ -95,8 +95,37 @@ function TabContent({ item }) {
   const [showDetails, setShowDetails] = useState(true);
   const [likes, setLikes] = useState(0);
 
+  console.log("Render"); //on state change, component function is called every time.
+  //but when state is alreadt in its default state, the this console will not be logged as component function will not be called again.
+
   function handleInc() {
     setLikes(likes + 1);
+  }
+  function handleTripleInc() {
+    // setLikes(likes + 1);
+    // setLikes(likes + 1);
+    // setLikes(likes + 1); // will only increase likes by one. because state update is asynchronous
+    // and likes is still 0. so state is stale
+
+    //to ovwercome this we can use callback function
+    setLikes((likes) => likes + 1);
+    setLikes((likes) => likes + 1);
+    setLikes((likes) => likes + 1); //this will work.
+
+    // handleInc(); //will not work
+    // handleInc();
+    // handleInc();
+  }
+
+  function handleUndo() {
+    setShowDetails(true);
+    console.log(showDetails);
+    setLikes(0);
+    console.log(likes);
+  }
+
+  function handleUndoLater() {
+    setTimeout(handleUndo, 2000); //batching in react 18 works well, so console.log(render) will execute only once.
   }
 
   return (
@@ -112,13 +141,13 @@ function TabContent({ item }) {
         <div className="hearts-counter">
           <span>{likes} ❤️</span>
           <button onClick={handleInc}>+</button>
-          <button>+++</button>
+          <button onClick={handleTripleInc}>+++</button>
         </div>
       </div>
 
       <div className="tab-undo">
-        <button>Undo</button>
-        <button>Undo in 2s</button>
+        <button onClick={handleUndo}>Undo</button>
+        <button onClick={handleUndoLater}>Undo in 2s</button>
       </div>
     </div>
   );

@@ -124,6 +124,69 @@ It Allows React to distinguish between multiple instances of the same component 
 So that while diffing it should be considred as unique element and state can be reset.
 because when a key changes between renders, the element will be destroyed and a new one will be created (even if the position in the tree is the same as before.)
 
+
+
+
+
+
+
+
+
 --------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------
+
+------------------------- Rules for Render Logic --------------------------------
+----------------
+Render logic: 
+      Code that lives at the top levelof the component function
+      Participates in descibing how the component view look like.
+      Executed every time the component is rendered
+
+EventHandler functions : 
+      Executed as a consequence of the event that the handler is listening to.
+      Code that actually does things : update state , perform an HTTP request, read an input field, navigate to another page, etc.
+----------
+Functional Programming principles :
+Side effects : dependency on or modification of any data outside the function scope. Interaction with the outside world. Examples : mutating external variables, HTTP requests, wrinting to DOM. Side effects are not bad, A program can only be useful if it has come interaction with the outside world. 
+
+Puru functions : A function that has no side effects. They do not change any variable outside its scope. Given the same input, a pure function always returns the same output. 
+---------------
+
+Rules of rernder logic : 
+
+Components must be pure  when it comes to render logic : given the same props, a component instance should always return the same JSX (output)
+
+Render logic must produce no side effects: No interaction with the outside world is allowed. So, in render logic: 
+    Do not perform network requests.
+    Do not start timers.
+    Do not directly use the DOM API
+    Do not mutate objects or variables outside the function scope.
+    Do not update state (or refs): this will create an infinite loop.
+
+Side effects are allowed (and encouraged) in event handler functions There is also a special hook to register side effects (useEffect)
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+------------------------- State Update Batching -------------------------
+As we know that render is not triggered immediately, but scheduled for when JS engine has some "free-time". There is also batching of multiple setState calls in the event handlers. But it happens in miliseconds.
+
+So how state updates the batched ?
+when an event handler sets the multiple states to new value, all the state updates gets batched in one state update for the entire event handlers. And then triggers render + commit
+
+So we can say that updating the State in React is asynchronous. 
+
+------------************** Batching in React 17 vs 18 ***********------------------
+Automatic batching is supported in React 17, but if we set multiple states after a time out, promises, or native DOM events, they are not batched and re-renders the DOM multiple times.
+
+All these are supported in React 18.
+
+***** We can opt-out of automatic batching by wrappng a state update un ReactDOM.flushSync().
 
