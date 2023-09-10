@@ -63,7 +63,7 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const query = "ujhgvk yu";
+  const [query, setQuery] = useState("");
 
   /* 
   //side effect --> because it is in render logic. and will cause infinite render
@@ -89,40 +89,85 @@ export default function App() {
 
   //using async function
   // useEffect(function () { //we cannot use async function directly, because useEffect is synchronous for race condition
-  useEffect(function () {
-    //so we use an async function inside the function
-    async function fetchMovies() {
-      try {
-        setIsLoading(true);
-        const res = await fetch(
-          `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&S=${query}`
-        );
-        //error case
-        if (!res.ok)
-          throw new Error("Something went wrong with fetching movies");
-        const data = await res.json();
-        //no data case
-        if (data.Response === "False") throw new Error("No Movie found");
+  useEffect(
+    function () {
+      //so we use an async function inside the function
+      async function fetchMovies() {
+        try {
+          setIsLoading(true);
+          setError("");
+          const res = await fetch(
+            `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&S=${query}`
+          );
+          //error case
+          if (!res.ok)
+            throw new Error("Something went wrong with fetching movies");
+          const data = await res.json();
+          //no data case
+          if (data.Response === "False") throw new Error("No Movie found");
 
-        setMovies(data.Search);
+          setMovies(data.Search);
 
-        // console.log(movies); //empty [], old value of state (stale state)
-        console.log(data.Search); //logs two times, becuase react veries if there is any problems.
-        //Works fine in production.
-      } catch (err) {
-        console.error(err.message);
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
+          // console.log(movies); //empty [], old value of state (stale state)
+          // console.log(data.Search); //logs two times, becuase react verifies if there is any problems.
+          //Works fine in production.
+        } catch (err) {
+          // console.error(err.message);
+          setError(err.message);
+        } finally {
+          setIsLoading(false);
+        }
       }
-    }
-    fetchMovies();
-  }, []);
+      if (query.length < 3) {
+        setMovies([]);
+        setError("");
+        return;
+      }
+      fetchMovies();
+    },
+    [query]
+  ); //dependency array -->
+  //By default, effects run after render. We can prevent that by passing a dependencey array.
+  //Without the depencency array, React doesn't know when to run the effect.
+  //Each time one of the dependencies changes, the effect will be executed again.
+  //Every state variable and props used inside the effect must be included in the dependency array.
+  // ------------------------- useEffect is a synchronization mechanism ----------------------
+  // UseEffect is like an event listener that is listeninig for one dependency to change. Whenever a dependency changes, it will execute the effect again.
+  /*
+useEffect(fn, [x, y,z]) --> effect synchronizes with x,y,z --> Runs on mount and re-render triggered by a, y, or z
 
+useEffect(fn, []) --> effect synchronizes with no state/props --> Runs only on mount (initial render)
+
+useEffect(fn) --> effect synchronizes with everything --> Runs on every render
+
+
+ Q) When are effects executed ?
+  After the render has already been painited on the screen then Effect runs Asynchronously.
+  It is asynchronous because it may take long processes, such as fetching data.
+
+
+  useEffect(function () {
+    console.log("After initial render");
+  }, []); //has dependency array but empty, so will run only once
+  useEffect(function () {
+    console.log("After every render");
+  }); // no dependency array, so will run every time
+  useEffect(
+    function () {
+      console.log(
+        "After every initial render and and every time query state is updated"
+      );
+    },
+    [query]
+  ); // has dependency array, so will run every time, when query state changes
+  console.log("During render");
+*/
+  //------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------------
   return (
     <>
       <NavBar>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </NavBar>
       <Main>
@@ -167,8 +212,7 @@ function Logo() {
     </div>
   );
 }
-function Search() {
-  const [query, setQuery] = useState("");
+function Search({ query, setQuery }) {
   return (
     <input
       className="search"
@@ -182,7 +226,7 @@ function Search() {
 function NumResults({ movies }) {
   return (
     <p className="num-results">
-      Found <strong>{movies.length}</strong> results
+      Found <strong>{movies ? movies.length : 0}</strong> results
     </p>
   );
 }
