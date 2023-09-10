@@ -190,3 +190,81 @@ All these are supported in React 18.
 
 ***** We can opt-out of automatic batching by wrappng a state update un ReactDOM.flushSync().
 
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+------------------------- How Event works in React --------------------------------
+DOM Refresher :
+Event Propogation and Event Delegation:
+ When any event is triggered at any part of DOM. The Event is actually triggered at the Top level of DOM and it propogates to to the element from where the event was fired. This process is knowns as Event propagation. 
+ And after finding the target element of the event, it delegates it back to root element, while propogating the event it also listens to all the corresponding elements, and finally we do something by listening to the desired element.
+
+ But in react the event is fired at the #root div of the Fiber tree, and there is only one event listener for all fiber nodes. 
+ Behind the scenes, React performs event delegation for all event in our application.
+
+
+------- Synthetic events ------
+Instead of PointerEvent, MouseEvent, KeyboardEvent ..... in Venilla JavaScript,
+React has SyntheticEvent, which is a thin wrapper(change is some functionality on top native event) around the DOM native events.
+
+It has same interface as native event objects, like stopPropogation() and preventDefault().
+
+Fixes the Browser inconsistencies, so that events work in same way in all browsers.
+
+Most Synthetic events bubble (including focus, blur and change (which usully do not bubble in with native)), except for scroll.
+-----------
+Event Handlers in React vs Vanilla JavaScript:
+Attributes for event handlers are named using camelCase
+Default Behavior can not be prevented by returning false (only by using preventDefault()).
+Attach "Capture" if you need to handle during capture phase (example : onClickCapture())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+---------------- Libraries vs Frameworks & The React Ecosystem ---------------------------
+Framework:
+Ease of Mind: Everything you need to build a complete application is included in the framework
+      like HTTP requests, Styling, Routing, Form management ...
+NO Choice : You're stuck with the framework's tool and conventions (not always bad) 
+
+Library:
+React is a view library, it renders the components on to view.
+For a large scale single page applicatuion, you need to use many external libraries.
+      HTTP requests, Styling, Routing, Form management ... are not part of React.
+
+Freedom: You can (or need to) choose multiple 3rd-party libraries to build the complete application.
+Decision Fatigue: You need to research, download, learn and stay up-to-date with multiple external libraries.
+
+----
+Next.JS and Remix are some frameworks which are built on top of react.
+
+
+
+
+------------------------------------------------------------------------------------------------
+---------------------- Component (instance) lifecycle --------------------------------
+Component lifecycle : Different phases of react component
+Mounted/Initial render :
+      When component is rendered for the first time
+      Fresh state and props are created.
+Re-Render :
+      State change
+      props change
+      parent re-renders
+      context changes
+Unmounted : 
+      component instance is destroyed and removed from component tree.
+      State and props are destroyed.
+      
