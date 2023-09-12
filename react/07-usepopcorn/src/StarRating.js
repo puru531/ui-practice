@@ -31,10 +31,10 @@ export default function StarRating({
   onSetRating,
 }) {
   //setting default prop value
-  const [rating, setRaing] = useState(defaultRating);
+  const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
   function handleRating(rating) {
-    setRaing(rating);
+    setRating(rating);
     onSetRating(rating);
   }
 
