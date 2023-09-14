@@ -1,10 +1,63 @@
 import { useState, useEffect } from "react";
 import StarRating from "./StarRating";
 
+// const tempMovieData = [
+//   {
+//     imdbID: "tt1375666",
+//     Title: "Inception",
+//     Year: "2010",
+//     Poster:
+//       "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+//   },
+//   {
+//     imdbID: "tt0133093",
+//     Title: "The Matrix",
+//     Year: "1999",
+//     Poster:
+//       "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
+//   },
+//   {
+//     imdbID: "tt6751668",
+//     Title: "Parasite",
+//     Year: "2019",
+//     Poster:
+//       "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
+//   },
+// ];
+
+// const tempWatchedData = [
+//   {
+//     imdbID: "tt1375666",
+//     Title: "Inception",
+//     Year: "2010",
+//     Poster:
+//       "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+//     runtime: 148,
+//     imdbRating: 8.8,
+//     userRating: 10,
+//   },
+//   {
+//     imdbID: "tt0088763",
+//     Title: "Back to the Future",
+//     Year: "1985",
+//     Poster:
+//       "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+//     runtime: 116,
+//     imdbRating: 8.5,
+//     userRating: 9,
+//   },
+// ];
+
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
 const KEY = "4e475c66";
+/* ==================== COMPONENT COMPOSITION =================
+  It is a technique used for combining different components using the 
+  'children' prop(or explicitely defined props)
+  We use this for :
+  1. Create highly reusable and flexible components
+  2. Fix prop drilling problems (great for layouts)
+  */
 
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -30,9 +83,34 @@ export default function App() {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
+  /* 
+  //side effect --> because it is in render logic. and will cause infinite render
+  // fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&S=interstellar`)
+  //   .then((res) => res.json())
+  //   .then((data) => setMovies(data.Search));
+
+  //To overcome this sideEffect, we use useEffect
+
+  //only run after component mounts.
+  //We use useEffect to keep component in sync with some external sytem (in this case, with API of movie data)
+  useEffect(function () {
+    //Effect
+    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&S=interstellar`)
+      .then((res) => res.json())
+      .then((data) => setMovies(data.Search));
+    //cleanup
+    return () => console.log("cleanup");
+  }, []); //second argument : dependecy array
+
+
+*/
+
+  //using async function
+  // useEffect(function () { //we cannot use async function directly, because useEffect is synchronous for race condition
   useEffect(
     function () {
-      const controller = new AbortController();
+      const controller = new AbortController(); //browser api to abort multiplie calls going on simultaneously.
+      //so we use an async function inside the function
       async function fetchMovies() {
         try {
           setIsLoading(true);
@@ -40,8 +118,9 @@ export default function App() {
           const res = await fetch(
             `http://www.omdbapi.com/?apikey=${KEY}&S=${query}`,
             { signal: controller.signal }
+            // `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&S=${query}`
           );
-          //error case
+          //error caseyy
           if (!res.ok)
             throw new Error("Something went wrong with fetching movies");
           const data = await res.json();
@@ -50,7 +129,12 @@ export default function App() {
 
           setMovies(data.Search);
           setError("");
+
+          // console.log(movies); //empty [], old value of state (stale state)
+          // console.log(data.Search); //logs two times, becuase react verifies if there is any problems.
+          //Works fine in production.
         } catch (err) {
+          // console.error(err.message);
           //excluding error given by abort
           if (err.name !== "AbortError") {
             setError(err.message);
@@ -72,8 +156,44 @@ export default function App() {
       };
     },
     [query]
-  );
+  ); //dependency array -->
+  //By default, effects run after render. We can prevent that by passing a dependencey array.
+  //Without the depencency array, React doesn't know when to run the effect.
+  //Each time one of the dependencies changes, the effect will be executed again.
+  //Every state variable and props used inside the effect must be included in the dependency array.
+  // ------------------------- useEffect is a synchronization mechanism ----------------------
+  // UseEffect is like an event listener that is listeninig for one dependency to change. Whenever a dependency changes, it will execute the effect again.
+  /*
+useEffect(fn, [x, y,z]) --> effect synchronizes with x,y,z --> Runs on mount and re-render triggered by a, y, or z
 
+useEffect(fn, []) --> effect synchronizes with no state/props --> Runs only on mount (initial render)
+
+useEffect(fn) --> effect synchronizes with everything --> Runs on every render
+
+
+ Q) When are effects executed ?
+  After the render has already been painited on the screen then Effect runs Asynchronously.
+  It is asynchronous because it may take long processes, such as fetching data.
+
+
+  useEffect(function () {
+    console.log("After initial render");
+  }, []); //has dependency array but empty, so will run only once
+  useEffect(function () {
+    console.log("After every render");
+  }); // no dependency array, so will run every time
+  useEffect(
+    function () {
+      console.log(
+        "After every initial render and and every time query state is updated"
+      );
+    },
+    [query]
+  ); // has dependency array, so will run every time, when query state changes
+  console.log("During render");
+*/
+  //------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------------
   return (
     <>
       <NavBar>
@@ -107,6 +227,16 @@ export default function App() {
             </>
           )}
         </Box>
+        {/* Explicit props --> alternative of children prop */}
+        {/* <Box element={<MoviesList movies={movies} />} />
+        <Box
+          element={
+            <>
+              <WatchedSummary watched={watched} />
+              <WatchedMoviesList watched={watched} />
+            </>
+          }
+        /> */}
       </Main>
     </>
   );
@@ -155,6 +285,7 @@ function Main({ children }) {
 }
 
 function Box({ children }) {
+  //function Box({ element }) { for explicit prop
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -167,6 +298,29 @@ function Box({ children }) {
     </div>
   );
 }
+/*
+function WatchedBox() {
+  const [watched, setWatched] = useState(tempWatchedData);
+  const [isOpen2, setIsOpen2] = useState(true);
+
+  return (
+    <div className="box">
+      <button
+        className="btn-toggle"
+        onClick={() => setIsOpen2((open) => !open)}
+      >
+        {isOpen2 ? "–" : "+"}
+      </button>
+      {isOpen2 && (
+        <>
+          <WatchedSummary watched={watched} />
+          <WatchedMoviesList watched={watched} />
+        </>
+      )}
+    </div>
+  );
+}
+*/
 
 function MoviesList({ movies, onSelectMovie }) {
   return (
@@ -339,11 +493,26 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       document.title = `Movie | ${title}`;
       //clean up
       return function () {
-        document.title = "usePopcorn";
+        document.title = "usePopcorn"; //will run on every re-render befire setting new title.
       };
     },
     [title]
-  );
+  ); // ----------------- The Cleanup function in useEffect -----
+  /*
+    Funtion that we can return from an effect (optional)
+    Runs on two different occasions:
+      1. before the effect is executed again.
+      2. after the component is unmounted
+    
+    Cleanup is necessary when the side effect keeps heppening after the component has been re-rendered.
+
+    example : if a http request is going on and the component is re-rendered, the again another http request will be executed, this will cause the race condition in the requests.
+    Cleanups:
+    -> Cancel http requests
+       Cancel API subscriptions
+       Stop timers
+       Remove listeners
+  */
 
   //setting global keyboard event listeners. and doing cleanup
   useEffect(
