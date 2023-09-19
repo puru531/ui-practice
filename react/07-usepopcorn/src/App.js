@@ -1,5 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import StarRating from "./StarRating";
+import { useMovies } from "./useMovies";
+import { useLocalStorageState } from "./useLocalStorageState";
+import { useKey } from "./useKey";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -7,12 +10,20 @@ const average = (arr) =>
 const KEY = "4e475c66";
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+
+  const [watched, setWatched] = useLocalStorageState([], "watched");
+  /* --> custom hooks : useLocalStorageState
+  // const [watched, setWatched] = useState([]);
+  // we can pass a callback funtion in react to get data.
+  //function should be pure, there shpuld be no argument, and it should return the data.
+  const [watched, setWatched] = useState(() => {
+    //lazy evaluation or lazy state
+    const storedValue = localStorage.getItem("watched");
+    return JSON.parse(storedValue);
+  });
+  */
 
   function handleSelectMovie(movieId) {
     setSelectedId((selectedId) => (selectedId === movieId ? null : movieId));
@@ -24,12 +35,21 @@ export default function App() {
 
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
+
+    //Adding watched movies in local storage
+    // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
+  /*--> custom hooks : useLocalStorageState
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify(watched));
+  }, [watched]);
+  */
 
+  /* --> in custom hook : useMovies
   useEffect(
     function () {
       const controller = new AbortController();
@@ -73,6 +93,8 @@ export default function App() {
     },
     [query]
   );
+  */
+  const { movies, isLoading, error } = useMovies(query);
 
   return (
     <>
@@ -131,6 +153,43 @@ function Logo() {
 }
 
 function Search({ query, setQuery }) {
+  //Using Ref instead of below useEffect.
+  const inputEl = useRef(null);
+
+  useKey("Enter", function () {
+    if (document.activeElement === inputEl.current) return;
+    inputEl.current.focus();
+    setQuery("");
+  });
+
+  /*  custom hook : useKey
+  useEffect(() => {
+    console.log(inputEl.current); //ref element --> input element.
+    function callback(e) {
+      if (document.activeElement === inputEl.current) return;
+
+      if (e.code === "Enter") {
+        inputEl.current.focus();
+        setQuery("");
+      }
+    }
+
+    document.addEventListener("keydown", callback);
+
+    //clean up
+    return () => document.addEventListener("keydown", callback);
+  }, [setQuery]);
+  */
+
+  /*
+  useEffect(() => {
+    //not a good way, because we are manually adding eventlisteners
+    const el = document.querySelector(".search");
+    console.log(el);
+    el.focus();
+  }, []);
+  */
+
   return (
     <input
       className="search"
@@ -138,6 +197,7 @@ function Search({ query, setQuery }) {
       placeholder="Search movies..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      ref={inputEl} //passing Ref, now no need to use querySelector.
     />
   );
 }
@@ -229,7 +289,7 @@ function WatchedSummary({ watched }) {
         </p>
         <p>
           <span>⏳</span>
-          <span>{avgRuntime} min</span>
+          <span>{avgRuntime.toFixed(0)} min</span>
         </p>
       </div>
     </div>
@@ -285,6 +345,12 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
 
+  const countRef = useRef(0);
+
+  useEffect(() => {
+    if (userRating) countRef.current++;
+  }, [userRating]);
+
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId
@@ -309,8 +375,9 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       year,
       poster,
       imdbRating: Number(imdbRating),
-      userRating,
       runtime: Number(runtime.split(" ").at(0)),
+      userRating,
+      countRatingDecisions: countRef.current,
     };
     onAddWatched(newWatchedMovie);
     onCloseMovie();
@@ -345,6 +412,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     [title]
   );
 
+  useKey("Escape", onCloseMovie);
+  /* custom hook : useKey
   //setting global keyboard event listeners. and doing cleanup
   useEffect(
     function () {
@@ -362,6 +431,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     },
     [onCloseMovie]
   );
+  */
 
   return (
     <div className="details">

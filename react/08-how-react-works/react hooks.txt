@@ -1,0 +1,94 @@
+----------------------- REACT HOOKS ---------------------------
+React hooks are special built-in functions that allow us to "hook" into React internals :
+Creating and accessing state from Fiber tree.
+Registering side effects in Fiber tree.
+Manual DOM selections.
+
+\*\*They all start with "use" (useState, useEffect, etc...)
+
+Enable easy reusing of non-visual logic: we can compose multiple hooks into our own custom hook.
+
+-------------- Overview of All Built-In Hooks ---------------------------------
+---- Most used :
+useState
+useEffect
+useReducer
+useContext
+
+---- Less used :
+useRef
+useCallback
+useMemo
+useTransition
+useDeferredValue
+
+----- not important
+useLayoutEffect
+useDebugValue
+useImperativeHandle
+useId
+
+---- only for libraries :
+useSyncExternalStore
+useInsertionEffect
+
+---------------------------- Rules of Hooks --------------------------------
+
+1. Only call hooks at the top level
+   Don't call hooks inside conditionals, loops, nested functions, or after an early return.
+   This is necessary to ensure that hooks are always called in same order (hooks rely on this)
+
+   Reason : Whenever an application is rendered, react creats a tree of React Elements (virtual DOM). On initial render reacts also creates the Fiber tree out of the DOM where each element is a Fiber. All the fibres contains a lot of stuff, like the props, a list of work, states and 'a linked list' of hooks that we use in a component instance.
+
+   And not adding hooks on top will destroy or break the linked list.
+
+2. Only call hooks from React functions
+   only call hooks inside a function component or a custom hook.
+
+
+
+
+
+
+
+
+
+
+
+=====================================================================
+----------------------- useRef --------------------------------
+"Box (object) with a mutable .current property that is persisted across renders. ("normal" variables are always reset)
+
+Two big use cases are :
+   1. Creating a variables that stays the same between renders (e.g. previous state, setTimeout id, etc.)
+   2. Selecting and storing DOM elements.
+
+Refs are for data that is not rendered: usually only appears in event handlers or effects, not in JSX (otherwise use state)
+
+DO NOT read or write .current in render logic. (same like state)
+
+------------------ State vs Refs --------------------------------
+Both persists accross renders.
+Updating state cause the component re-render, but updating Refs does not.
+States are immutable, but Refs are not.
+State updates are Asynchronous, but Ref updates are not.
+
+
+
+
+
+
+==========================================================================
+
+------------------------------ Custom Hooks --------------------------------
+In react we may need to reuse two things : UI & Logic
+UI : to reuse UI we use components.
+Logic : to reuse logic we have two options : 
+         Regular function : if there is no hooks in the logic.
+         Custon hooks : If the logic contains hooks. Custom hooks allow us to reuse       non-visual logic in multiple logic. 
+
+Custom hooks allow us to reuse non-visual logic in multiple logic. 
+One custom hook shoulf have one purpose, to make it reusable and portable (even accross multiple projects).
+Rules of hooks also applies to custom hooks.
+
+Function names needs to start with "use".
