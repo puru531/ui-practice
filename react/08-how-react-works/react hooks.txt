@@ -92,3 +92,24 @@ One custom hook shoulf have one purpose, to make it reusable and portable (even 
 Rules of hooks also applies to custom hooks.
 
 Function names needs to start with "use".
+
+
+
+
+========================================================================
+----------------------- useState vs useReducer -------------------------------
+useState : Ideal for single, independent pieces of state (numbers, strings, single arrays, etc)
+         : Logic to update state is placed directly in eventHandlers or effects, spread all over one or multiple components.
+         : State is updated by calling setState (setter returned from useState) 
+         : Easy to understand and use.
+
+
+
+useReducer : Ideal for multiple related pieces of state that are dependent on each other, and complex state (e.g. object with many values and nested objecets or arrays)
+            : Logic to update the state lives un one central place, decoupled from components: the reducer.
+            : State is updated by dispatching an action to a reducer.
+            : Declarative state upadtes: complex state transition are mapped to actions.
+            : More dificult to understand and implement.
+
+When to use useReducer ?
+If there are multiple states and most of them needs to be updated frquently together. And we are willing to implement complex code.

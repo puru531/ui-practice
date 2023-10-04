@@ -1,0 +1,52 @@
+1. Create project : npm create vite@latest     or    npm create vite@4
+2. Hit enter to intall vite package (promped for first vite project)
+3. Give project name : worldwise
+4. select JS library or framework you want to use : (React)
+5. cd to project folder (cd worldwise)
+6. install packages : (npm install)
+7. Run the project : (npm run dev)
+8. open the given localhost in browser : http://localhost:5173/
+
+==================================================================
+------------------ Eslint setup for React in Vite ----------------
+1. in separate terminal : npm install eslint vite-plugin-eslint eslint-config-react-app  --save-dev
+2. Create a file in root folder of project named : .eslintrc.json
+3. Configure eslint as following : 
+    {
+       "extends": "react-app"   (this will inherit all configs of react-app eslint configs)
+    }
+4. Add eslint plugin to the vite.config.js :
+    import eslint from "vite-plugin-eslint";   <--- import eslint
+    export default defineConfig({
+      plugins: [react(), eslint()],   <---- Add (eslint()) here
+    });
+
+
+========================================================================
+----------------------- Install React Router --------------------------------
+npm install react-router-dom  or   npm i react-router-dom@6 (for this project only)
+
+----------- specifying routes ------------
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Product from "./pages/Product";
+import Homepage from "./pages/Homepage";
+import Pricing from "./pages/Pricing";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="product" element={<Product />} />
+        <Route path="pricing" element={<Pricing />} />
+        <Route path="*" element={<PageNotFound />} />  <--- for all other wrong URLs
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+
+=====================================================================
+=====================================================================
