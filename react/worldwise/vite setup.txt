@@ -50,3 +50,43 @@ export default App;
 
 =====================================================================
 =====================================================================
+
+---------------- Styling React App (CSS) --------------------------------
+React doesn't care about styling.
+Ways we can style our application : 
+1. Inline CSS 
+   where : JSX elements
+   how: style prop
+   scope: JSX element
+   Based on : CSS 
+
+2. CSS or Sass file
+   where : external file
+   how: className prop
+   scope: Entire app
+   Based on : CSS
+
+3. CSS Modules
+   where : One external file per component
+   how: className prop
+   scope: component
+   Based on : CSS
+
+4. CSS-in-JS
+   where : external file or component file 
+   how: creates new component
+   scope: component
+   Based on : Javascript
+
+5. Utility-first CSS  (tailwind)
+   where : JSX element
+   how: className prop
+   scope: JSX element
+   Based on : CSS
+
+6. Use UI libraries like Material UI, Chakra Mantine (No need to write CSS)
+
+
+
+=====================================================================
+=====================================================================
