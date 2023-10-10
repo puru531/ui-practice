@@ -47,6 +47,47 @@ function App() {
 
 export default App;
 
+----------------------- Using React Router --------------------------------
+import { Link, NavLink } from "react-router-dom";
+
+   <Link to="/">Home</Link>
+   
+   //NavLink gives class of 'active' for currently active page
+   <NavLink to="/">Home</NavLink>
+
+----------------------- Nested Route and Index Route --------------------------------
+   <Route path="app" element={<AppLayout />}>
+      <Route path="cities" element={<p>List of Cities</p>} />
+      <Route path="countries" element={<p>List of Countries</p>} />
+      <Route path="form" element={<p>Form</p>} />
+   </Route>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 =====================================================================
 =====================================================================
