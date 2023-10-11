@@ -1,4 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
 import Product from "./pages/Product";
 import Homepage from "./pages/Homepage";
 import Pricing from "./pages/Pricing";
@@ -7,8 +9,7 @@ import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 import CityList from "./components/CityList";
 import City from "./components/City";
-import { useState } from "react";
-import { useEffect } from "react";
+import Form from "./components/Form";
 import CountryList from "./components/CountryList";
 
 const BASE_URL = "http://localhost:8000";
@@ -47,10 +48,9 @@ function App() {
         <Route path="app" element={<AppLayout />}>
           {/* children routes */}
           {/* Index route : A default route that is loaded when none of the child matches the router */}
-          <Route
-            index
-            element={<CityList cities={cities} isLoading={isLoading} />}
-          />
+          {/* Navigate is used to redirect the particular route */}
+          {/* if we click on back butto of browser, that doesn't work, to fix that, we need to add replace property */}
+          <Route index element={<Navigate replace to="cities" />} />
           <Route
             path="cities"
             element={<CityList cities={cities} isLoading={isLoading} />}
@@ -60,7 +60,7 @@ function App() {
             path="countries"
             element={<CountryList cities={cities} isLoading={isLoading} />}
           />
-          <Route path="form" element={<p>Form</p>} />
+          <Route path="form" element={<Form />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

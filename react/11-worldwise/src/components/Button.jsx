@@ -1,0 +1,14 @@
+import styles from "./BUtton.module.css";
+function Button({ children, onClick, type }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`${styles.btn} ${styles[type]}`}
+    >
+      {children}
+    </button>
+  );
+}
+
+export default Button;
