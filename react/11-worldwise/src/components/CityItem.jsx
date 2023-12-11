@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./CityItem.module.css";
 import flagemojiToPNG from "./FlagToPng";
+import { useCities } from "../contexts/CitiesContext";
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -9,13 +10,16 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city }) {
+  const { currentCity } = useCities();
   const { cityName, emoji, date, id, position } = city;
   return (
     <li>
       {/* Setting state variable data in the route , route should not be with / i.e. `/${id}`, that will add to route id */}
       {/* along with that, setting state variable data through query param */}
       <Link
-        className={styles.cityItem}
+        className={`${styles.cityItem} ${
+          currentCity?.id === id ? styles["cityItem--active"] : ""
+        }`}
         to={`${id}?lat=${position.lat}&lng=${position.lng}`}
       >
         {/* <span className={styles.emoji}>{emoji}</span> */}

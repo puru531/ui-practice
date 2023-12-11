@@ -1,0 +1,27 @@
+Passing props to deeply nested components causes 'Prop Drilling' problem.
+We need a way directly pass the props to deeply nested components from a child components.
+Context API allow us to do this.
+
+========== CONTEXT API ===============
+-> System to pass data throughout the app without manually passing props down to the tree.
+-> Allows us to "broadcast" global state to the entire app.
+-------------- Context API has 3 parts 
+    1. Provider : Gives all child components access to value. It stays on top of the component tree.
+    2. Value : data that we want to make available (usually state and functions).
+    3. Consumers : All components that read the provided context value.
+When the value in the Context API changes then all the consumers are re-rendered.
+
+=========================================== =====================================
+
+How state management works and how Context api fits into the state management tools? 
+
+-------------------------------------------------------------------------
+Types of State : 
+  ========= State Accessibility : 
+            -> Local State : Needed only by one or few components. Only Accessible in component and child components
+            -> Global State : Might be needed by many components. Accessible to every components in the application.
+
+  ========= State Domain : 
+            -> Remote State : All application data loaded from a remote server (API), Usually Asynchronous, Needs re-fetching + updating.
+            -> UI State : Everything else. Theme, list filters, form data, etc.
+

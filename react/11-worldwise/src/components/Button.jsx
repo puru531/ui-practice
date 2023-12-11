@@ -1,4 +1,4 @@
-import styles from "./BUtton.module.css";
+import styles from "./Button.module.css";
 function Button({ children, onClick, type }) {
   return (
     <button
