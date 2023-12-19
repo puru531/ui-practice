@@ -1,0 +1,35 @@
+================= Performace Optimization tools ==============================
+There are three main areas where we can focus on to optimize Performace
+
+1. Prevent wasted renders :
+   memo
+   useMemo
+   useCallback
+   Passing elements as children or regular prop
+
+2. Improve app speed / responsiveness
+   useMemo
+   useCallback
+   useTransition
+
+3. Reduce the bundle size
+   Using fewer 3rd party packages
+   code splitting and lazy loading
+
+=================================================================================
+
+1. Prevent wasted rendering :
+   When does a components instance re-render ?
+   -> state changes
+   -> context changes
+   -> parent re-renders
+   \*\* A render does not means that the DOM actually gets updated, it just means the component functions gets called. But this can be expensive operation.
+
+Wasted render : A render that didn't produce any change in the DOM. This is a proble, when they happen too frequently or when the component is too slow.
+
+To overcome this, we can pass slow component as prop or children and use it in parent of slow component to avoid re-render of slowComponent.
+
+========================================================================================================
+================================== MEMO ===================================================
+What is memoization ?
+Optimizatin technique that executes a pure function once and saves the result in memory. If we try to execute the function again with the same arguments as before, the previously saved result will be returned, without executing the function again.
