@@ -25,3 +25,10 @@ Types of State :
             -> Remote State : All application data loaded from a remote server (API), Usually Asynchronous, Needs re-fetching + updating.
             -> UI State : Everything else. Theme, list filters, form data, etc.
 
+
+
+==================================================================================================
+=======================================================================================================
+------------------------ Don't optimize prematurely ----------------------------------
+ Don't optimize anything if there is nothing to optimize.
+ 

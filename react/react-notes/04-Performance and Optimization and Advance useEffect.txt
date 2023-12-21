@@ -18,6 +18,7 @@ There are three main areas where we can focus on to optimize Performace
 
 =================================================================================
 
+
 1. Prevent wasted rendering :
    When does a components instance re-render ?
    -> state changes
@@ -30,6 +31,63 @@ Wasted render : A render that didn't produce any change in the DOM. This is a pr
 To overcome this, we can pass slow component as prop or children and use it in parent of slow component to avoid re-render of slowComponent.
 
 ========================================================================================================
-================================== MEMO ===================================================
+================================== MEMO ================================================================
 What is memoization ?
 Optimizatin technique that executes a pure function once and saves the result in memory. If we try to execute the function again with the same arguments as before, the previously saved result will be returned, without executing the function again.
+
+Memoize components with memo 
+Memoize objects with useMemo
+Memoize function with useCallback
+
+It will help in :
+   Prevent wasted renders.
+   Improve app speed/responsiveness.
+
+
+---------- The Memo function ---------------------
+Used to create a component that will not re-render when its parent re-renders, as long as the props stay the same between renders.
+It only affects props! A memoized component will still re-render when its own state changes or when a context that it's subscribed to changes.
+Only makes sense when the component is heavy (slow rendering), re-renders ofter and does so with the same props.
+
+to use memo, just wrap the component in memo() and store in variable, Use that variable as an element.
+
+------------ An issue with memo :
+In React, everything is re-created on every render (including objects and functions)
+In Javascript, two objects or functions that look the same are actually different ( {} != {})
+Therefore, if objects are passed as props, the child component will always see them as new props on each render.
+So, if props are different betwwen re-renders, memo will not work.
+
+Solution : We need to memoize the objects and functions, to make them stable (preserve) between re-renders ( memoized {} == memoized {} ).
+this can be achieved with useMemo and useCallback
+
+
+========================================================================================================
+================================== useMemo and useCallback =============================================
+useMemo : Used to memoize values between renders.
+useCallback : Used to memoize functions between renders.
+
+Values passed into useMemo and useCallback will be stored in memory ("cached") and returned in subsequent re-renders, as long as dependencies ("inputs") stay the same.
+
+useMemo and useCallback have a dependency array (like useEffect) : Whenever one dependency changes, the values will be re-created.
+----------------------------------------
+Three big use cases of useMemo and useCallback :
+   1. Memoizing props to prevent wasted renders (together with memo).
+   2. Memoizing values to avoid expensive re-calculations on every render.
+   3. Memoizing values that are used in dependency array of another hook. 
+----------------------------
+
+Memoizing Context APIs : Only Memoize context when below three things are true at the same time.
+   1. All the state in the context needs to change all the time.
+   2. Context has many consumers
+   3. App is actually slow and laggy.
+
+
+
+
+
+===========================================================================================================
+=======================================================================================================================
+3. Optimizing bundle size with code splitting.
+Bundle : Javascript file containing the entire application code, Downloading the bundle will load the entire app at once, turning it into SPA (Single Page Application)
+Bundle Size : Amount of Javascript users have to download to start using the app. One of the most important things thing to be optimized, so the the bundle takes less time to download.
+Code splitting : Splitting code into multiple parts that can be downloaded over time ("Lazy loading").

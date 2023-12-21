@@ -27,7 +27,10 @@ function City() {
 
   useEffect(() => {
     getCity(id);
-  }, [id]);
+  }, [id, getCity]); //adding getCity func in dependency array will cause infinite re-renders,
+  // because it is present in context api, which will be call on fist render itself
+  //because getCity is present in dependency array, which will again cause upadte in contextAPi and again will render the component, and again getCity will be called ... and so on
+  //So, we need to memoixze the getCity function in context file
 
   const { cityName, emoji, date, notes } = currentCity;
 
