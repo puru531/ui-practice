@@ -91,3 +91,38 @@ Memoizing Context APIs : Only Memoize context when below three things are true a
 Bundle : Javascript file containing the entire application code, Downloading the bundle will load the entire app at once, turning it into SPA (Single Page Application)
 Bundle Size : Amount of Javascript users have to download to start using the app. One of the most important things thing to be optimized, so the the bundle takes less time to download.
 Code splitting : Splitting code into multiple parts that can be downloaded over time ("Lazy loading").
+
+
+
+==================================================================================================
+=======================================================================================================
+------------------------ Don't optimize prematurely ----------------------------------
+ Don't optimize anything if there is nothing to optimize.
+ 
+
+
+ ============================================================================================================
+ ============================================================================================================
+ -------------------------- useEffect rules and best practices --------------------------------
+ Dependency array rules :
+   > Every state variable, props and context value used inside the effect MUST be included in the dependency array.
+   > All "reactive values" must be iincluded! That means any function or variable that reference any other reactive value.
+   > Do NOT use objects or arrays as dependencies (objects are recreated on each render, and React sees new object as different, {} !== {})
+Removing unnecessary dependencies:
+   > removing function dependencies: 
+      Move function into the effect.
+      If you need the function in multiple places, memoize it (useCallback)
+      If the function doesn't reference ant reactive values, move it out of the component.
+   > Removing object dependencies: 
+      Instead of including the entire object, include only the properties you need (primitive values)
+      If that doen't work, use the same strategies as for functions (moving or memoizing object)
+   > Other strategies:
+      If you have multiple related values as dependencies, try using a reducer (useReducer)
+      YOu don't need to include setState (from useState) and dispatch (from useReducer) in the dependencies, as React guarantees them to be stable across renders.
+
+When NOT to use an effect -------------------------
+   > Effect should be used as a last resprt, when no other solution makes sense. React calls them an "escape hatch" to step outside of React.
+   > There cases where effects are overused :
+      1. Responding to a user event. An event handler function should be used instead.
+      2. Fetching data on a component mount. This is fine in small apps, but in real-world apps, a library like React Query should be used.
+      3. Synchronizing state changes with one another (setting state based on another state variable). Try to use derived state and event handlers.
