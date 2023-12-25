@@ -1,0 +1,21 @@
+======================================= Redux ==================================================
+> Redux is a third party library to manage global state.
+> Standlone library, but easy to integrate with React apps using react-redux library.
+> All global state is stored in one globally accessible store, which is easy to update using "actions" (like useReducer)
+> It is conceptually similar to using the Context API + useReducer
+> Two versions of Redux : 
+                1. Classic Redux
+                2. Modern Redux Toolkit
+
+
+
+========================= Installing Redux =================================================
+npm install redux
+===================== Creating a Redux store =================================================
+import {createStore} from 'redux';   //deprecated, (we are using classic Redux)
+
+const store = createStore(reducer);
+store.dispatch({type: 'account/deposit', payload: 500});
+
+//fetching :
+    console.log(store.getState());
