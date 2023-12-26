@@ -19,3 +19,66 @@ store.dispatch({type: 'account/deposit', payload: 500});
 
 //fetching :
     console.log(store.getState());
+
+=========================================================
+----------------- Combining multiple reducers -----------------
+const rootReducer = combineReducers({
+  account: accountReducer,
+  customer: customerReducer,
+});
+const store = createStore(rootReducer);
+
+export default store;
+
+-------------------- dispatching (Setting state) --------------------
+const dispatch = useDispatch();
+
+  function handleDeposit() {
+    dispatch(deposit(depositAmount));
+  }
+---------------- Reading state -----------------------------
+const customer = useSelector((store) => store.customer.fullName);
+console.log(customer);
+
+or 
+
+const {
+    balance: currentBalance,
+    loan: currentLoan,
+    loanPurpose: currentLoanPurpose,
+} = useSelector((store) => store.account);
+
+console.log(currentBalance, currentLoan, currentLoanPurpose);
+
+---------------------- Old way of passing props --------------------
+function BalanceDisplay({ balance }) { //prop passed to component
+  return <div className="balance">{formatCurrency(balance)}</div>;
+}
+
+function mapStateToProperties(state) {
+  return { balance: state.account.balance }; //name of props to be passed, and value stored to it
+}
+
+//Legacy way of connecting Components to Redux
+export default connect(mapStateToProperties)(BalanceDisplay);
+
+
+
+
+=========================================================================================
+=========================================================================================
+
+--------------------- Redux Middleware and Thunks --------------------
+Where to make an aynchronous API call (or any other async operation) in Redux ?
+    > Store : There should be any aynchronous operation in store.
+              Reducers need to be pure function.
+    > component : We can make aynchronous operations and then dispatch.
+                  But fetching data in component is not ideal.
+    > Middleware : A function that sits between dispatching the action and the store. Allows us to run code after dispathcing, but before dispathcing reaching the reducer in the store.
+                   Perfect for asynchronous code.
+                   API calls, timers, logging, etc.
+                   It is the place for side effects. 
+    
+----------------- Thunk Middleware ---------------
+We use third party package for middleware called Thunk
+ 
