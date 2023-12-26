@@ -62,7 +62,42 @@ import { Link, NavLink } from "react-router-dom";
       <Route path="form" element={<p>Form</p>} />
    </Route>
 
+---------------------------------------------------------------
+//reading data from query param in route.
+  const [searchParams, setSearchParams] = useSearchParams(); //returns an array like useState : we can and set also.
+  const lat = searchParams.get("lat"); //searchParams consistes of an object which we need to read using get function.
+  const lng = searchParams.get("lng");
 
+------------------------------------------------------------
+//reading state data from route.
+  const { id } = useParams(); //provided by react router
+
+----------------------------------------------------------------
+Setting state variable data in the route , route should not be with / i.e. `/${id}`, that will add to route id 
+along with that, setting state variable data through query param 
+
+      <Link to={`${id}?lat=${position.lat}&lng=${position.lng}`}>Any link </Link>
+
+-----------------------------------------------------------------------
+
+Programatic navigation using useNavigate
+  const navigate = useNavigate(); // this returns a function that can be used to navigate.
+
+   <div onClick={() => navigate("form")}>
+
+---------------------------------------------------------------
+
+  reading data from query param in route.
+  const [searchParams, setSearchParams] = useSearchParams(); //returns an array like useState : we can and set also.
+  const mapLat = searchParams.get("lat"); //searchParams consistes of an object which we need to read using get function.
+  const mapLng = searchParams.get("lng");
+
+  Setting the queryParam 
+      <button onClick={() => setSearchParams({ lat: 50, lng: 23 })}>
+        Change Position
+      </button>
+
+-------------------------------------------------------------------------
 
 
 

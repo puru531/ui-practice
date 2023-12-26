@@ -13,7 +13,7 @@ export default function customerReducer(state = initialStateCustomer, action) {
         nationalId: action.payload.nationalId,
         createdAt: action.payload.createdAt,
       };
-    case "custome/updateName":
+    case "customer/updateName":
       return { ...state, fullName: action.payload };
     default:
       return state;

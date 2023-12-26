@@ -22,6 +22,8 @@ store.dispatch({type: 'account/deposit', payload: 500});
 
 =========================================================
 ----------------- Combining multiple reducers -----------------
+import { applyMiddleware, combineReducers, createStore } from "redux";
+
 const rootReducer = combineReducers({
   account: accountReducer,
   customer: customerReducer,
@@ -81,4 +83,27 @@ Where to make an aynchronous API call (or any other async operation) in Redux ?
     
 ----------------- Thunk Middleware ---------------
 We use third party package for middleware called Thunk
- 
+
+npm install redux-thunk
+
+in store.js :
+import { applyMiddleware } from "redux";
+import { thunk } from "redux-thunk";
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+
+
+=============================================================================================
+============================================================================================
+----------------------- Redux Dev Tools --------------------
+1. Install Google Chrome extension : Redux DevTools
+2. Install corresponding npm package : npm i @redux-devtools/extension 
+3. Update store.js : 
+
+    import { composeWithDevTools } from "@redux-devtools/extension";
+
+    const store = createStore(
+      rootReducer,
+      composeWithDevTools(applyMiddleware(thunk))
+    );
