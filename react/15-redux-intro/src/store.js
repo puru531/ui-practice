@@ -1,17 +1,14 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import { composeWithDevTools } from "@redux-devtools/extension";
-import { thunk } from "redux-thunk";
+//Redux Toolkit (instead of createStore which is deprecated, we will use configureStore instead)
+import { configureStore } from "@reduxjs/toolkit"; //it will consist createStore and configureStore, thunk, deveTools and may more
+
 import accountReducer from "./features/account/accountSlice";
 import customerReducer from "./features/customer/customerSlice";
 
-const rootReducer = combineReducers({
-  account: accountReducer,
-  customer: customerReducer,
+const store = configureStore({
+  reducer: {
+    account: accountReducer,
+    customer: customerReducer,
+  },
 });
-// const store = createStore(rootReducer, applyMiddleware(thunk));
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
 
 export default store;
