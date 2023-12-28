@@ -1,1 +1,1 @@
-***Setting up a Vite-React project*** :
+#Setting up a Vite-React project :
