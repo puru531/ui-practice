@@ -1,7 +1,6 @@
 # Setting up a Vite-React project :
 
-\*\* Create project :
-`npm create vite@latest` or `npm create vite@4`
+** Create project : `npm create vite@latest` or `npm create vite@4`
 Hit enter to intall vite package (promped for first vite project)
 Give project name : xyz
 Select JS library or framework you want to use : (React)
