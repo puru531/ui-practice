@@ -1,0 +1,10 @@
+// jsconfig.json at project root
+
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "module": "ES6",
+    "checkJs": false,
+    "jsx": "preserve"
+  }
+}
