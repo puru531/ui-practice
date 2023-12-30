@@ -81,4 +81,5 @@ In case, the auto-import is not giving relative path _(path starting with ./fold
 
 ```
 "javascript.preferences.importModuleSpecifier": "relative",
+"javascript.suggest.autoImports": true,
 ```
