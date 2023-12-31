@@ -1,4 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
+import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
+import { createOrder } from "../../services/apiRestaurant";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -31,33 +34,38 @@ const fakeCart = [
 ];
 
 function CreateOrder() {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
+  const fromErrors = useActionData();
+
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
 
   return (
     <div>
       <h2>Ready to order? Let's go!</h2>
-
-      <form>
+      {/* ========= Writing data with React Router "Actions" ================ */}
+      {/* ================ use Form by react-router-dom =============== */}
+      {/* <Form method="POST" action="/order/new"> ----> not needed bcz by default it will take closest route  */}
+      <Form method="POST">
         <div>
           <label>First Name</label>
           <input type="text" name="customer" required />
         </div>
-
         <div>
           <label>Phone number</label>
           <div>
             <input type="tel" name="phone" required />
           </div>
+          {fromErrors?.phone && <p>{fromErrors.phone}</p>}
         </div>
-
         <div>
           <label>Address</label>
           <div>
             <input type="text" name="address" required />
           </div>
         </div>
-
         <div>
           <input
             type="checkbox"
@@ -68,13 +76,40 @@ function CreateOrder() {
           />
           <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
-
         <div>
-          <button>Order now</button>
+          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+          <button disabled={isSubmitting}>
+            {isSubmitting ? "Placing Order..." : "Order now"}
+          </button>
         </div>
-      </form>
+      </Form>
     </div>
   );
+}
+
+//function for writing data with React Router
+//whenever the Form is submitted, react will call this action function
+export async function action({ request }) {
+  const formData = await request.formData(); //formData is a web API, provided by the browser
+  const data = Object.fromEntries(formData); //convert to object
+  const order = {
+    ...data,
+    cart: JSON.parse(data.cart),
+    priority: data?.priority === "on",
+  };
+
+  //phone number validation
+  const errors = {};
+  if (!isValidPhone(order.phone)) {
+    errors.phone =
+      "Please give us your correct phone number. We might need it to contact you.";
+  }
+  if (Object.keys(errors).length > 0) return errors;
+
+  const newOrder = await createOrder(order);
+
+  return redirect(`/order/${newOrder.id}`); //redirect to order detail page after order is placed,
+  // here we are not using useNavigate() because useNavigate can only be accessed in a component.
 }
 
 export default CreateOrder;

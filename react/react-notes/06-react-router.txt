@@ -1,0 +1,175 @@
+==================== react-router 6.4 =====================
+React version 6.4 introduced a new way of defining routes and working with react-router.
+It allows fetching data into pages and submitting data using forms, all within react-router.
+
+
+===================== Installing react-router =====================
+npm i react-router-dom@6
+
+===================== in App.jsx ========================
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Menu, { loader as menuLoader } from "./features/menu/Menu";
+
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      { path: "/", element: <Home /> },
+      // connecting loader for data fetching
+      {
+        path: "/menu",
+        element: <Menu />,
+        loader: menuLoader,  -------> connecting loader
+        errorElement: <Error />, ------> connecting error handler
+      },
+      { path: "/cart", element: <Cart /> },
+      { path: "/order/new", element: <CreateOrder /> },
+      { path: "/order/:orderId", element: <Order /> },
+    ],
+  },
+]);
+
+function App() {
+  return <RouterProvider router={router} />;
+}
+
+==================== In AppLayout.jsx ========================
+function AppLayout() {
+  //Displaying a loading indicator when data is being loaded by react-router.
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
+  return (
+    <div className="layout">
+      {isLoading && <Loader />}
+      <Header />
+
+      <main>
+        <Outlet /> {/* Loading routed components */}
+      </main>
+
+      <CartOverview />
+    </div>
+  );
+}
+
+=============== In Menu.jsx =============================
+import { getMenu } from "../../services/apiRestaurant";
+
+function Menu() {
+  //reading data
+  const menu = useLoaderData();
+  console.log(menu);
+  return <h1>Menu</h1>;
+}
+
+// Declaration of Loader function for loading data using react-router
+export async function loader() {
+  const menu = await getMenu();
+  return menu;
+}
+export default Menu;
+
+=============== Fetching data by reading values from route (using params) =============================
+//since useParams can only be used inside components, react-router gives params argument for loader.
+export async function loader({params}) {
+  const order = await getOrder(params.orderId);
+  return order;
+}
+
+=============== In Error.jsx (Error case while fetching data) =============================
+import { useNavigate, useRouteError } from "react-router-dom";
+
+function Error() {
+  const navigate = useNavigate();
+  const error = useRouteError();
+  console.log(error);
+  return (
+    <div>
+      <h1>Something went wrong 😢</h1>
+      <p>{error?.data || error?.message}</p>
+      <button onClick={() => navigate(-1)}>&larr; Go back</button>
+    </div>
+  );
+}
+
+export default Error;
+
+
+
+
+
+
+
+========================================================================================
+========================================================================================
+========= Writing data with React Router "Actions" ================
+
+import { Form, redirect } from "react-router-dom";
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+  const fromErrors = useActionData();
+
+//use Form by react-router-dom
+  {/* <Form method="POST" action="/order/new"> ----> not needed bcz by default it will take closest route  */}
+  <Form method="POST">
+  .
+  .
+  .
+  .
+  .
+  </Form>
+
+
+ =================== Outside component, create action for POST call 
+  //function for writing data with React Router
+//whenever the Form is submitted, react will call this action function
+export async function action({ request }) {
+  const formData = await request.formData(); //formData is a web API, provided by the browser
+  const data = Object.fromEntries(formData); //convert to object
+  const order = {
+    ...data,
+    cart: JSON.parse(data.cart),
+    priority: data?.priority === "on",
+  };
+
+  //phone number validation
+  const errors = {};
+  if (!isValidPhone(order.phone)) {
+    errors.phone =
+      "Please give us your correct phone number. We might need it to contact you.";
+  }
+  if (Object.keys(errors).length > 0) return errors;
+
+  const newOrder = await createOrder(order);
+  return redirect(`/order/${newOrder.id}`); //redirect to order detail page after order is placed,
+  // here we are not using useNavigate() because useNavigate can only be accessed in a component.
+}
+
+
+================== connect with router in app.jsx ===============
+import CreateOrder, {action as createOrderAction} from "./features/order/CreateOrder";
+  {
+    path: "/order/new",
+    element: <CreateOrder />,
+    action: createOrderAction, //connecting action for writing data to API with react router
+  },
+
+
+================================== POST Call function in service 
+export async function createOrder(newOrder) {
+  try {
+    const res = await fetch(`${API_URL}/order`, {
+      method: "POST",
+      body: JSON.stringify(newOrder),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) throw Error();
+    const { data } = await res.json();
+    return data;
+  } catch {
+    throw Error("Failed creating your order");
+  }
+}
