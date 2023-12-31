@@ -68,11 +68,10 @@ Create `jsconfig.json` in project root folder with below content :
 ```
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "module": "ES6",
-    "checkJs": false,
-    "jsx": "preserve"
-  }
+    "module": "CommonJS",
+    "target": "ES6"
+  },
+  "exclude": ["node_modules"]
 }
 ```
 
@@ -82,4 +81,5 @@ In case, the auto-import is not giving relative path _(path starting with ./fold
 
 ```
 "javascript.preferences.importModuleSpecifier": "relative",
+"javascript.suggest.autoImports": true,
 ```
