@@ -1,0 +1,126 @@
+--------- installing redux toolkit --------------
+npm i @reduxjs/toolkit react-redux
+
+//------------------ Slice --------------------------------
+const initialState = {
+  username: '',
+};
+
+const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    updateName(state, action) {
+      state.username = action.payload;
+    },
+  },
+});
+
+export const {updateName} = userSlice.actions;
+
+export default userSlice.reducer;
+
+//------------------------ Store.js   -----------------
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './features/user/userSlice';
+
+const store = configureStore({
+  reducer: {
+    user: userReducer,
+  },
+});
+
+export default store;
+
+//------------------------ main.jsx -----------------
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import { Provider } from 'react-redux';
+import store from './store.js';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+);
+
+//---------------------- getting a state from redux --------------
+import { useSelector } from 'react-redux';
+
+const username = useSelector((state) => state.user.username);
+
+//-------- Using dispatch function to update the state in redux -----
+import { useDispatch } from 'react-redux';
+import { updateName } from './userSlice';
+
+const dispatch = useDispatch();
+
+function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!username) return;
+
+    dispatch(updateName(username));
+  }
+
+
+//--------------------
+
+
+============================================================================
+============================================================================
+  //Fetching Data without navigation : useFetcher
+  const fetcher = useFetcher();
+
+  useEffect(
+    function () {
+      if (!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu');
+    },
+    [fetcher],
+  );
+
+  console.log(fetcher.data);
+
+
+
+====================================================================================
+====================================================================================
+--------- Updating Data without navigation : useFetcher --------------------------------
+
+  import { useFetcher } from 'react-router-dom';
+  import Button from '../../ui/Button';
+  import { updateOrder } from '../../services/apiRestaurant';
+
+  function UpdateOrder({ order }) {
+    const fetcher = useFetcher();
+    return (
+      <fetcher.Form method="PATCH" className="text-right">
+        <Button type="primary">Make priority</Button>
+      </fetcher.Form>
+    );
+  }
+  //GBKJ1W
+  export default UpdateOrder;
+
+  export async function action({ request, params }) {
+    const data = { priority: true };
+    await updateOrder(params.orderId, data); //param will read orderID from route
+    return null;
+  }
+
+
+------------------- App.js --------------------------------
+import { action as updateOrderAction } from './features/order/UpdateOrder';
+
+      {
+        path: '/order/:orderId',
+        element: <Order />,
+        loader: orderLoader,
+        errorElement: <Error />,
+        action: updateOrderAction,
+      },
+    ],

@@ -1,0 +1,39 @@
+============= Setting up Tailwind CSS in Vite-React project =================
+Visit : https://tailwindcss.com/docs/installation/framework-guides
+Select Vite
+Run : npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+Two files (postcss.config.js, tailwindcss.config.js) will be created
+
+Add path in Content[] of tailwindcss.config.js file :
+content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+------------- 
+Change index.css file (Add on top)
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+---------------- 
+Start adding classes to your elements
+----------------
+Install VS Code tailwind css intellisence extension
+-----------------
+Install tailwind prettier extension : (It will sort the classes in tailwind recommeded order)
+Search google : tailwind prettier extension
+Open github  link : https://github.com/tailwindlabs/prettier-plugin-tailwindcss
+Copy (from readme) and run : npm install -D prettier prettier-plugin-tailwindcss 
+
+------------------
+Create // prettier.config.cjs file and add : 
+
+  // prettier.config.cjs
+  // eslint-disable-next-line no-undef
+  module.exports = {
+    plugins: ['prettier-plugin-tailwindcss'],
+    singleQuote: true,
+  };
+-----------------------------------
