@@ -12,9 +12,12 @@
 1. in separate terminal : npm install eslint vite-plugin-eslint eslint-config-react-app  --save-dev
 2. Create a file in root folder of project named : .eslintrc.json
 3. Configure eslint as following : 
-    {
-       "extends": "react-app"   (this will inherit all configs of react-app eslint configs)
-    }
+   {
+      "extends": "react-app",  (this will inherit all configs of react-app eslint configs)
+      "rules": {
+         "react/prop-types": "off"
+      }
+   }
 4. Add eslint plugin to the vite.config.js :
     import eslint from "vite-plugin-eslint";   <--- import eslint
     export default defineConfig({
