@@ -1,0 +1,40 @@
+Styled components is a library which allow us to write css in javascript component files.
+---------------- Installation ----------------
+npm i styled-components
+
+----------------------------------------------------
+import styled from "styled-components";
+
+const StyledApp = styled.div`
+  background-color: orangered;
+  padding: 20;
+`;
+
+const H1 = styled.h1`
+  font-size: 30px;
+  font-weight: 600;
+`;
+function App() {
+  return (
+    <StyledApp>
+      <H1>The Wild Oasis</H1>
+    </StyledApp>
+  );
+}
+
+export default App;
+----------------------------------------------------------------
+
+const StyledNavLink = styled(NavLink)`
+  &:link,
+  &:visited {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    color: var(--color-grey-600);
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 1.2rem 2.4rem;
+    transition: all 0.3s;
+  }`

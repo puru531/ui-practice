@@ -1,0 +1,112 @@
+---------------------- React Query --------------------------------
+> Powerful library for managing remote (server) state.
+> Many features that allow us to write a lot less code, while also making the US a lot better.
+    > Data is stores in a cache
+    > Automatic loading and error states.
+    > Automatic re-fetching to keep state synched 
+    > Pre-fetching
+    > East remote state mutation (updating)
+    > Offline support (since it is cached)
+> Needed because remote state is fundamentally different from regular (UI) state.
+
+
+--------------------------Installation-----------------------------------
+npm i @tanstack/react-query@4
+
+
+-----------------React Query DevTools ------------------------
+npm i @tanstack/react-query-devtools@4
+
+
+--------------------- Integration in App.jsx ----------------------------
+
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import GlobalStyles from "./styles/GlobalStyles";
+import Dashboard from "./pages/Dashboard";
+import Bookings from "./pages/Bookings";
+import Cabins from "./pages/Cabins";
+import Users from "./pages/Users";
+import Settings from "./pages/Settings";
+import Account from "./pages/Account";
+import Login from "./pages/Login";
+import PageNotFound from "./pages/PageNotFound";
+import AppLayout from "./ui/AppLayout";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false}>
+        <GlobalStyles />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index element={<Navigate replace to="dashboard" />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="bookings" element={<Bookings />} />
+              <Route path="cabins" element={<Cabins />} />
+              <Route path="users" element={<Users />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="account" element={<Account />} />
+            </Route>
+            <Route path="login" element={<Login />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </ReactQueryDevtools>
+    </QueryClientProvider>
+  );
+}
+
+export default App;
+
+----------------- Fetching Data Using React Query ----------------
+import { useQuery } from "@tanstack/react-query";
+import { getCabins } from "../../services/apiCabins";
+
+function CabinTable() {
+  const x = useQuery({
+    queryKey: ["cabins"],
+    queryFn: getCabins, //needs to return a promise
+  });
+  console.log(x);
+  return <div>Table</div>;
+}
+
+export default CabinTable;
+
+---------------- Deleting data using React Query ----------------
+
+  const queryClient = useQueryClient(); //calling query client of app.jsx
+
+  //deleting remote data using react-query
+  const { isLoading: isDeleting, mutate } = useMutation({
+    mutationFn: deleteCabin,
+    //invalidate the data as soon as deletion is successful
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["cabins"],
+      });
+    },
+    onError: (err) => alert(err.message),
+  });
+
+
+  <button onClick={() => mutate(cabinId)} disabled={isDeleting}>Delete</button>
+
+------------------------------------------------------------------------
+
+--------- react form ---------
+npm i react-hook-form or npm i react-hook-form@7
+
+visit CreateCabinForm.jsx of the-wild-oasis project.
+---------------------------------------------------------------
