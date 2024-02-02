@@ -2,8 +2,8 @@ import {
   cloneElement,
   createContext,
   useContext,
-  useEffect,
-  useRef,
+  // useEffect,
+  // useRef,
   useState,
 } from "react";
 import { createPortal } from "react-dom";

@@ -21,14 +21,14 @@ import Menus from "../../ui/Menus";
 //   }
 // `;
 
-const Img = styled.img`
-  display: block;
-  width: 6.4rem;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.5) translateX(-7px);
-`;
+// const Img = styled.img`
+//   display: block;
+//   width: 6.4rem;
+//   aspect-ratio: 3 / 2;
+//   object-fit: cover;
+//   object-position: center;
+//   transform: scale(1.5) translateX(-7px);
+// `;
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -88,7 +88,11 @@ function CabinRow({ cabin }) {
           <Menus.Menu>
             <Menus.Toggle id={cabinId} />
             <Menus.List id={cabinId}>
-              <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
+              <Menus.Button
+                icon={<HiSquare2Stack />}
+                onClick={handleDuplicate}
+                disabled={isCreating}
+              >
                 Duplicate
               </Menus.Button>
               <Modal.Open opens="edit">
