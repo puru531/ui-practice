@@ -58,7 +58,7 @@ function Tabbed({ content }) {
         <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
       </div>
       {/* ---------------- Direct consequence of Diffing rules ------------- */}
-      {/* Here the state is changing, but element is same, so if if content is hidded and 
+      {/* Here the state is changing, but element is same, so if content is hidden and 
       number of likes is 4 then it will remain in same state even if we change the tab. 
       becuase the state inside that component will remain unchanged.
       
@@ -73,7 +73,7 @@ function Tabbed({ content }) {
       ) : (
         <DifferentContent />
       )}
-      {/* This will sload content inside it in DOM, but will not include in React Component tree.
+      {/* This will load content inside it in DOM, but will not include in React Component tree.
       So it cannot manage its own state. */}
       {/* {TabContent({ item: content.at(0) })}  */}
     </div>

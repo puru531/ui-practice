@@ -88,7 +88,7 @@ Logic : to reuse logic we have two options :
          Custon hooks : If the logic contains hooks. Custom hooks allow us to reuse       non-visual logic in multiple logic. 
 
 Custom hooks allow us to reuse non-visual logic in multiple logic. 
-One custom hook shoulf have one purpose, to make it reusable and portable (even accross multiple projects).
+One custom hook should have one purpose, to make it reusable and portable (even accross multiple projects).
 Rules of hooks also applies to custom hooks.
 
 Function names needs to start with "use".

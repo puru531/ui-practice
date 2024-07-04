@@ -35,7 +35,7 @@ function PostProvider({ children }) {
     setPosts([]);
   }
 
-  //memoize object that is used by children to prevennt wated renders.
+  //memoize object that is used by children to prevent unwanted renders.
   const value = useMemo(() => {
     return {
       posts: searchedPosts,
