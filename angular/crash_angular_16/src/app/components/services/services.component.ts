@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { MyServiceService } from 'src/app/services/my-service.service';
 
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss'],
+  // providers: [MyServiceService], // The providers array is used to provide the service to the component.
+  // If you do not provide the service in the providers array, you will get the following error:
+  // No provider for MyServiceService
 })
 export class ServicesComponent {
   /**
@@ -49,4 +53,15 @@ export class ServicesComponent {
    * command: ng generate service my-service
    * or ng g s my-service
    * */
+
+  myName: string = '';
+
+  // Using a Service in a Component
+
+  // To use a service in a component, you need to import the service and inject it into the component's constructor.
+  constructor(private myService: MyServiceService) {}
+
+  ngOnInit() {
+    this.myName = this.myService.getMyName();
+  }
 }

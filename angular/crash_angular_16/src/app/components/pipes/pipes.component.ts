@@ -12,7 +12,7 @@ export class PipesComponent {
   pi = 3.14159265359;
 
   promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('Promise Resolved!'), 3000);
+    setTimeout(() => resolve('Promise Resolved!'), 1000);
   });
 
   object = {
