@@ -1,0 +1,18 @@
+import { Component } from '@angular/core';
+import {HeaderComponent} from "./header.component";
+
+/**
+ * In TypeScript and Angular, a decorator is a special kind of declaration that can be attached to a class, method, accessor, property, or parameter.
+ * Decorators are used to modify or enhance the behavior of the target they are applied to.
+ * They are prefixed with an @ symbol.
+ * For example, in Angular, the @Component decorator is used to define a component and its metadata, such as the selector, template, and styles.
+ */
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [HeaderComponent], // this is needed to import the HeaderComponent in the AppComponent as HeaderComponent is used in the template of AppComponent and is a standalone component.
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
+})
+export class AppComponent {}
