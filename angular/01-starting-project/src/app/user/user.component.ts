@@ -1,8 +1,12 @@
 // import {Component, computed, input, Input} from '@angular/core';
-import {Component, EventEmitter, Input, output, Output} from '@angular/core';
+import { Component, EventEmitter, Input, output, Output } from '@angular/core';
 
 // type User = {avatar: string, name: string, id: string};
-interface User {avatar: string, name: string, id: string};
+interface User {
+  avatar: string;
+  name: string;
+  id: string;
+}
 /*
 INTERFACE: An interface is a way to define a contract in your code. This contract includes the data types of the properties and methods that a class must implement.
 TYPE : A type is a way to define a custom data type in TypeScript. It can be used to define the shape of an object, a function, or any other custom data type.
@@ -19,16 +23,15 @@ Interface VS Type:
   selector: 'app-user',
   standalone: true,
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
 })
 export class UserComponent {
-
   /* --------------- Regular input ------------- */
 
   // receiving data from parent component
   // @Input({required:true}) user!: User; // ! is used to tell TypeScript that the property will be initialized later
   // @Input() user?: User; // optional to be passed from parent component
-  @Input({required:true}) user?: User; // required to be passed from parent component
+  @Input({ required: true }) user?: User; // required to be passed from parent component
 
   /* ---------- Using Signal input -------------- */
   /*avatar = input.required<string>();
@@ -37,37 +40,24 @@ export class UserComponent {
   // NOTE : These signal input are read-only. We can't set the value to these signal input properties.
   // this.avatar.set(Something); --> will not work
 
-
-
-
-
-
   /* ------------------ Event Emitters ---------------- */
   @Output() selectUser = new EventEmitter<string>();
-
 
   /*----------- Modern alternative of @Output() - NOT a signal -------------- */
   // Uses output function instead of @Output decorator
   // selectUser = output<string>();
 
-
-
-
-
-
-
   // imagePath = computed(()=>  'assets/users/' + this.avatar());
- get imagePath() {
-    return 'assets/users/' + this.user?.avatar;
+  get imagePath() {
+    const path = 'assets/users/' + this.user?.avatar;
+    console.log('=========== avatar', path);
+    return path;
   }
 
   onSelectUser() {
-   this.selectUser.emit(this.user?.id);
+    this.selectUser.emit(this.user?.id);
   }
 }
-
-
-
 
 /*======================================= Signal =====================================
 
