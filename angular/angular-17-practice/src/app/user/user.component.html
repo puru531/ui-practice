@@ -1,0 +1,31 @@
+<!--
+<div>
+&lt;!&ndash;  adding event listeners to the elements &ndash;&gt;
+  <button (click)="onSelectUser()"> &lt;!&ndash; Event Binding &ndash;&gt;
+    &lt;!&ndash; <img src="{{ selectedUser.avatar }}" alt="" /> &ndash;&gt; &lt;!&ndash; This is the old way of doing it &ndash;&gt;
+&lt;!&ndash;    <img [src]="imagePath" [alt]="selectedUser.name" /> &lt;!&ndash; Property binding &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;    <span>{{ selectedUser.name }}</span>  &lt;!&ndash; String Interpolation &ndash;&gt;&ndash;&gt;
+        <img [src]="imagePath()" [alt]="selectedUser().name" /> &lt;!&ndash; Property binding using value from signal &ndash;&gt;
+    <span>{{ selectedUser().name }}</span>  &lt;!&ndash; String Interpolation &ndash;&gt;
+  </button>
+</div>
+-->
+
+<!-- For signal inputs -->
+<!--
+<div>
+  <button (click)="onSelectUser()">
+     <img [src]="imagePath()" [alt]="name()" />
+    <span>{{ name() }}</span>
+  </button>
+</div>
+-->
+
+
+<!-- For object inputs -->
+<div>
+  <button (click)="onSelectUser()">
+     <img [src]="imagePath" [alt]="user?.name" />
+    <span>{{ user?.name }}</span>
+  </button>
+</div>
