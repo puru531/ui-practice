@@ -1,1 +1,32 @@
-<app-header></app-header> <!-- This throws an error because the app-header component is not imported in the imports array of the this component. Because app-header is a standalone component, it is not included in the app.module.ts file. -->
+<app-header/> <!-- This throws an error because the app-header component is not imported in the imports array of the this component. Because app-header is a standalone component, it is not included in the app.module.ts file. -->
+<main>
+  <ul id="users">
+    <!--   angular for-loop in template -->
+    <!--    track is used to keep track of the changes in the array of users -->
+    @for (user of users; track user.id) {
+      <li>
+        <app-user [user]="user" (selectUser)="onSelectUser($event)"/>
+      </li>
+    }
+
+    <!--    ------------ OLDER VERSION ----------------- -->
+    <!--<li *ngFor="let user of users">
+      <app-user [user]="user" (selectUser)="onSelectUser($event)"/>
+    </li>-->
+  </ul>
+
+  <!--  conditional rendering of tasks component -->
+    @if (selectedUser) {
+      <app-tasks [userId]="selectedUserId" [name]="selectedUser.name"/>
+    } @else {
+      <p id="fallback">Select a user to see their tasks!</p>
+    }
+
+  <!--  ------------ OLDER VERSION ----------------- -->
+  <!--<app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser.name"/>
+  <ng-template #fallback>
+    &lt;!&ndash;   #fallback is a reference to the template &ndash;&gt;
+    <p id="fallback">Select a user to see their tasks!</p>
+
+  </ng-template>-->
+</main>
