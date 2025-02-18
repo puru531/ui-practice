@@ -1,29 +1,14 @@
 // import {Component, computed, input, Input} from '@angular/core';
 import { Component, EventEmitter, Input, output, Output } from '@angular/core';
-
-// type User = {avatar: string, name: string, id: string};
-interface User {
-  avatar: string;
-  name: string;
-  id: string;
-}
-/*
-INTERFACE: An interface is a way to define a contract in your code. This contract includes the data types of the properties and methods that a class must implement.
-TYPE : A type is a way to define a custom data type in TypeScript. It can be used to define the shape of an object, a function, or any other custom data type.
-
-Interface VS Type:
-1. Interfaces are used to define the shape of an object, while types are used to define custom data types.
-2. Interfaces can be extended, while types can be aliased.
-3. Interfaces can be implemented by classes, while types cannot.
-4. Interfaces can be used to define optional and required properties, while types cannot.
-
- */
+import { User } from './user.model';
+import { CardComponent } from '../shared/card/card.component';
 
 @Component({
   selector: 'app-user',
   standalone: true,
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
+  imports: [CardComponent],
 })
 export class UserComponent {
   /* --------------- Regular input ------------- */
@@ -32,6 +17,7 @@ export class UserComponent {
   // @Input({required:true}) user!: User; // ! is used to tell TypeScript that the property will be initialized later
   // @Input() user?: User; // optional to be passed from parent component
   @Input({ required: true }) user?: User; // required to be passed from parent component
+  @Input({ required: true }) isSelected!: boolean;
 
   /* ---------- Using Signal input -------------- */
   /*avatar = input.required<string>();
@@ -49,9 +35,7 @@ export class UserComponent {
 
   // imagePath = computed(()=>  'assets/users/' + this.avatar());
   get imagePath() {
-    const path = 'assets/users/' + this.user?.avatar;
-    console.log('=========== avatar', path);
-    return path;
+    return 'assets/users/' + this.user?.avatar;
   }
 
   onSelectUser() {

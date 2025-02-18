@@ -21,11 +21,11 @@
 </div>
 -->
 
-
 <!-- For object inputs -->
-<div>
-  <button (click)="onSelectUser()">
-     <img [src]="imagePath" [alt]="user?.name" />
+<app-card>
+  <!--  property binding to the class attribute; if isSelected is true, the class active is added to the button element -->
+  <button [class.active]="isSelected" (click)="onSelectUser()">
+    <img [src]="imagePath" [alt]="user?.name" />
     <span>{{ user?.name }}</span>
   </button>
-</div>
+</app-card>
