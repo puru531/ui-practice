@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {HeaderComponent} from "./header/header.component";
-import { UserComponent } from "./user/user.component";
-import {DUMMY_USERS} from "./dummy-users";
-import {TasksComponent} from "./tasks/tasks.component";
+import { DUMMY_USERS } from './dummy-users';
+// import {HeaderComponent} from "./header/header.component";
+// import { UserComponent } from "./user/user.component";
+// import {TasksComponent} from "./tasks/tasks.component";
 // import {NgFor, NgIf} from "@angular/common"; // NgFor and NgIf are directives that are used in the template of AppComponent --> Older version
 
 /**
@@ -14,9 +14,10 @@ import {TasksComponent} from "./tasks/tasks.component";
 
 @Component({
   selector: 'app-root',
-  standalone: true,
+  // standalone: true,
+  standalone: false,
   // imports: [HeaderComponent, UserComponent, TasksComponent, NgFor, NgIf], // NgFor, NgIf are needed in imports as they are used in the template of AppComponent
-  imports: [HeaderComponent, UserComponent, TasksComponent], // this is needed to import the HeaderComponent in the AppComponent as HeaderComponent is used in the template of AppComponent and is a standalone component.
+  // imports: [HeaderComponent, UserComponent, TasksComponent], // this is needed to import the HeaderComponent in the AppComponent as HeaderComponent is used in the template of AppComponent and is a standalone component.
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -25,12 +26,10 @@ export class AppComponent {
   selectedUserId!: string;
 
   get selectedUser() {
-    return this.users.find(user => user.id === this.selectedUserId)!; // ! is used to tell TypeScript that the property will be initialized later
+    return this.users.find((user) => user.id === this.selectedUserId)!; // ! is used to tell TypeScript that the property will be initialized later
   }
 
   onSelectUser(id: string) {
-    console.log('User selected with id: ' + id);
     this.selectedUserId = id;
   }
-
 }

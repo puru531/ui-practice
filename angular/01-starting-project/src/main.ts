@@ -1,12 +1,17 @@
-import { bootstrapApplication } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app/app.module';
 
-import { AppComponent } from './app/app.component';
-import {HeaderComponent} from "./app/header/header.component";
+platformBrowserDynamic().bootstrapModule(AppModule);
 
-bootstrapApplication(AppComponent).catch((err) => console.error(err));
+// ==================== for standalone components ====================
+
+// import { bootstrapApplication } from '@angular/platform-browser';
+
+// import { AppComponent } from './app/app.component';
+// import { HeaderComponent } from './app/header/header.component';
+
+// bootstrapApplication(AppComponent).catch((err) => console.error(err));// only works for standalone components
 // bootstrapApplication(HeaderComponent) // this is needed to bootstrap the header component if we are using it in the index.html file
 // but if we are using the header component in the app.component.html file then we don't need to bootstrap it here
 // generally, we bootstrap the root component of the application in the main.ts file
 // in this case, the root component is AppComponent
-
-
