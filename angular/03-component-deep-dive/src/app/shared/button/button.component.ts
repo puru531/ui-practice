@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'button[appButton]', // any button element the project having `appButton` as property should be controlled by this component.
+  // selector: 'button[appButton], a[appButton]', // can have multiple selectors
   // selector: 'button.button', // using class
   // selector: '[appButton]', // using only attribute
   standalone: true,
