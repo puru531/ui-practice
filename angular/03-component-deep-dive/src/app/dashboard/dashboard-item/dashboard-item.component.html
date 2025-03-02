@@ -4,6 +4,7 @@
       <img [src]="image.src" [alt]="image.alt" />
       <h2>{{ dashboardTitle() }}</h2>
     </header>
-    <ng-container></ng-container>
+    <ng-content />
+    <!-- <ng-content select="[selector]"></ng-content> -->
   </article>
 </div>
