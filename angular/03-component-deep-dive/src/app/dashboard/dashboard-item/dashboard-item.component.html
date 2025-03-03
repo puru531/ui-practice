@@ -1,10 +1,8 @@
-<div class="dashboard-item">
-  <article>
-    <header>
-      <img [src]="image.src" [alt]="image.alt" />
-      <h2>{{ dashboardTitle() }}</h2>
-    </header>
-    <ng-content />
-    <!-- <ng-content select="[selector]"></ng-content> -->
-  </article>
-</div>
+<article>
+  <header>
+    <img [src]="image.src" [alt]="image.alt" />
+    <h2>{{ dashboardTitle() }}</h2>
+  </header>
+  <ng-content />
+  <!-- <ng-content select="[selector]"></ng-content> -->
+</article>
