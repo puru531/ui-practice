@@ -1,0 +1,31 @@
+Create ultimate Angular interview preperation documents for angular developer having 6 years of experience, covering all the toping from beginner to advance lavel, topics should also cover but not limited to :
+Input output
+Viewchild, reference
+Component projection
+Ng-content
+Ng-container
+Directives
+Services, providers, singleton, inject()
+Interceptors
+Modules
+Standalone components
+Change detections
+Zone.js and signals
+BrowserRouter
+Routing
+HttpClient
+Ngrx: action Effect reducer selector
+Comparison with RxJS
+RxJS popular operators not including but not limited to
+exhaustMap, switchmap, mergemap concatmap
+Behavior subject replaysubject subject Async subject
+Comparison between popular observable operators or subjects
+Higher order observables
+Lower order operators
+Hot and Cold observables
+Mapping
+Also, add tricky questions.
+
+create separate files for each topics add aroung 15 - 20 quetions, focus bit on theory and conceptual part as well, add multiple tricky questions in each sections
+
+
