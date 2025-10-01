@@ -41,3 +41,17 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
 }
 ```
+
+
+## To run the backend
+Download and install Docker Desktop application
+
+Open the backend folder in terminal and run :
+```bash
+docker-compose build
+```
+After build is finished, run the server:
+```bash
+docker-compose up
+```
+The API should be available at `http://localhost:3000/api/articles`
