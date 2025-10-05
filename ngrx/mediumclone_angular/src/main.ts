@@ -19,6 +19,9 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
 import { authFeatureKey, authReducer } from './app/auth/store/reducers';
 import { provideHttpClient } from '@angular/common/http';
+import { provideEffects } from '@ngrx/effects';
+import * as authEffects from './app/auth/store/effects'; // import like this
+// import {registerEffect} from './app/auth/store/effects'; ---> Won't work
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -26,6 +29,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes),
     provideStore(),
     provideState(authFeatureKey, authReducer), // provided here because we need auth data in whole application and is not lazy loaded
+    provideEffects(authEffects),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),

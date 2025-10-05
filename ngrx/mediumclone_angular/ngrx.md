@@ -10,3 +10,8 @@ First install Redux devtools in browser from extension store.
 ```bash
 npm i @ngrx/store-devtools@15
 ```
+
+Install Effects:
+```bash 
+npm i @ngrx/effects@15
+```
