@@ -4,9 +4,9 @@ import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { register } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest.inteface';
-import { selectIsSubmitting } from '../../store/selectors';
 import { AuthStateInterface } from '../../types/authStateInterface';
 import { CommonModule } from '@angular/common';
+import { selectIsSubmitting } from '../../store/reducers';
 
 @Component({
   selector: 'mc-register',
