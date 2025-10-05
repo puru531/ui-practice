@@ -55,3 +55,8 @@ After build is finished, run the server:
 docker-compose up
 ```
 The API should be available at `http://localhost:3000/api/articles`
+
+To generate environment files:
+```bash
+npx -p @angular/cli@15 ng generate environments
+```
