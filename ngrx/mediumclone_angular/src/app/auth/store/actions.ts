@@ -7,6 +7,7 @@ import {
 import { RegisterRequestInterface } from '../types/registerRequest.inteface';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUserInterface';
 import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
+import { LoginRequestInterface } from '../types/loginRequest.interface';
 
 /*
 export const register = createAction(
@@ -33,5 +34,9 @@ export const authActions = createActionGroup({
     Register: props<{ request: RegisterRequestInterface }>(),
     'Register Success': props<{ currentUser: CurrentUserInterface }>(),
     'Register Failure': props<{ errors: BackendErrorsInterface }>(),
+
+    Login: props<{ request: LoginRequestInterface }>(),
+    'Login Success': props<{ currentUser: CurrentUserInterface }>(),
+    'Login Failure': props<{ errors: BackendErrorsInterface }>(),
   },
 });
